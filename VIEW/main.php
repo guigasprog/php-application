@@ -85,6 +85,15 @@ main {
     background-color: #41414160;
 }
 
+
+.cardSelected {
+    background-color: #41414160;
+}
+
+.cardSelected:hover {
+    background-color: #41414160;
+}
+
 .conteudo {
     width: 100%; 
     height: 100%;

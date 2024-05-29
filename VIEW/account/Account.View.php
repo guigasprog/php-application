@@ -1,6 +1,6 @@
 <?php
-// include_once 'C:\xampp\htdocs\php-application\DAL\Account.php';
-include_once '../../DAL/Account.php';
+include_once 'C:\xampp\htdocs\php-application\DAL\Account.php';
+// include_once '../../DAL/Account.php';
 use DAL\Account;
 
 $dalAccount = new \DAL\Account();
@@ -68,7 +68,8 @@ main {
     height: 95%;
     margin: 1%;
     border-radius: 10px;
-    background-color: green;
+    background-color: #41414110;
+    overflow: hidden;
 }
 
 .content {
@@ -94,16 +95,15 @@ main {
     cursor: pointer;
 }
 
+.card:hover {
+    background-color: #41414160;
+}
+
 .cardSelected {
-    background-color: #41414140;
-    cursor: default;
+    background-color: #41414160;
 }
 
 .cardSelected:hover {
-    background-color: #41414140;
-}
-
-.card:hover {
     background-color: #41414160;
 }
 
@@ -164,7 +164,7 @@ button.primary:hover {
     <div class="conteudo">
         <aside>
             <div class="content">
-                <div class="card" onclick="changeRouter('./account/Account.View.php')">
+                <div class="card cardSelected">
                     <a>
                         <h6>Accounts</h6>
                     </a>
@@ -175,17 +175,19 @@ button.primary:hover {
             </div>
         </aside>
     <main>
-        <header style="width: 100%; height auto; display: flex; justify-content: center;">
-            <div class="button">
-                <button class="primary">
+        <header style="width: 100%; height: auto; display: flex; justify-content: center;">
+            <div class="button" style="width: 25%;display: flex;
+        align-items: center;
+        flex-direction: column;">
+                <button class="primary" onclick="changeRouter('../main.php')">
                     Back
                 </button>
             </div>
-            <h1 style="width: 85%; display: flex;
+            <h3 style="width: 75%; display: flex;
         align-items: center;
-        flex-direction: column;">List Accounts</h1>
+        flex-direction: column;">List Accounts</h3>
         </header>
-        <table style="background-color: #41414120; margin: 1%">
+        <table style="background-color: #41414120;">
             <tr>
                 <th>ID</th>
                 <th>Username</th>
