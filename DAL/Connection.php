@@ -3,7 +3,7 @@
     
     use \PDO;
    class Connection {
-      private static $dbNome = 'chaostrial'; 
+      private static $dbNome = 'chaostrials'; 
       private static $dbHost = 'localhost';
       private static $dbUsuario = 'root'; 
       private static $dbSenha = '';
@@ -14,8 +14,6 @@
     public static function connect(){
         if (self::$cont == null){
             try{ 
-               //self::$cont = new PDO("mysql:host=localhost;dbname=laboratorios", "root", ""); 
-
                self::$cont = new PDO("mysql:host=" . self::$dbHost . ";dbname=" . self::$dbNome,  self::$dbUsuario , self::$dbSenha); 
             }
             catch (\PDOException $exception) {

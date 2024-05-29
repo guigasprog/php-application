@@ -2,13 +2,11 @@
 <html lang="pt-br">
 
 <head>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 
-    <!-- Compiled and minified JavaScript -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <meta charset="UTF-8">
@@ -72,7 +70,7 @@ main {
 
 .card {
     width: 90%;
-    height: 120px;
+    height: 80px;
     margin: 3%;
     background-color: #41414120;
     border-radius: 10px;
@@ -139,14 +137,14 @@ button.primary:hover {
 
 <body>
     <header>
-        <h3>Chaos-Trials</h3>
+        <h4>Chaos-Trials</h4>
     </header>
     <div class="conteudo">
         <aside>
             <div class="content">
                 <div class="card" onclick="changeRouter('./account/Account.View.php')">
                     <a>
-                        <h5>Accounts</h5>
+                        <h6>Accounts</h6>
                     </a>
                 </div>
                 <div class="card">

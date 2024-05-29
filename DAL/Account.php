@@ -1,9 +1,9 @@
 <?php
 namespace DAL; //Data Access Layer
-include_once 'C:\xampp\htdocs\php-application\DAL\Connection.php';
-include_once 'C:\xampp\htdocs\php-application\MODEL\Account.Model.php';
-//include_once '../MODEL/Account.Model.php';
-//include_once './Connection.php';
+// include_once 'C:\xampp\htdocs\php-application\DAL\Connection.php';
+// include_once 'C:\xampp\htdocs\php-application\MODEL\Account.Model.php';
+include_once '../MODEL/Account.Model.php';
+include_once './Connection.php';
 
 class Account
 {

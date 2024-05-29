@@ -1,6 +1,6 @@
 <?php
-include_once 'C:\xampp\htdocs\php-application\DAL\Account.php';
-//include_once '../../DAL/Account.php';
+// include_once 'C:\xampp\htdocs\php-application\DAL\Account.php';
+include_once '../../DAL/Account.php';
 use DAL\Account;
 
 $dalAccount = new \DAL\Account();
@@ -17,6 +17,9 @@ $accounts = $dalAccount->Select();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,7 +83,7 @@ main {
 
 .card {
     width: 90%;
-    height: 120px;
+    height: 80px;
     margin: 3%;
     background-color: #41414120;
     border-radius: 10px;
@@ -89,6 +92,15 @@ main {
     align-items: center;
     transition: 300ms;
     cursor: pointer;
+}
+
+.cardSelected {
+    background-color: #41414140;
+    cursor: default;
+}
+
+.cardSelected:hover {
+    background-color: #41414140;
 }
 
 .card:hover {
@@ -147,14 +159,14 @@ button.primary:hover {
 
 <body>
     <header>
-        <h3>Chaos-Trials</h3>
+        <h4>Chaos-Trials</h4>
     </header>
     <div class="conteudo">
         <aside>
             <div class="content">
-                <div class="card" href="/php-application/VIEW/account/">
-                    <a href="/php-application/VIEW/account/">
-                        <h5>Accounts</h5>
+                <div class="card" onclick="changeRouter('./account/Account.View.php')">
+                    <a>
+                        <h6>Accounts</h6>
                     </a>
                 </div>
                 <div class="card">

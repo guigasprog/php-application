@@ -2,7 +2,7 @@
 namespace BLL;
 
 include_once 'C:\xampp\htdocs\php-application\DAL\Account.php';
-//include_once '../DAL/Account.php';
+// include_once '../DAL/Account.php';
 use DAL;
 
 class Account
