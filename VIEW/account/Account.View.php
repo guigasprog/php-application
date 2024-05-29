@@ -2,10 +2,15 @@
 include_once 'C:\xampp\htdocs\php-application\DAL\Account.php';
 // include_once '../../DAL/Account.php';
 use DAL\Account;
+include_once 'C:\xampp\htdocs\php-application\DAL\Character.php';
+// include_once '../../DAL/Account.php';
+use DAL\Character;
 
 $dalAccount = new \DAL\Account();
+$dalCharacter = new \DAL\Character();
 
 $accounts = $dalAccount->Select();
+$character = $dalCharacter->SelectById(1);
 ?>
 
 
@@ -155,6 +160,7 @@ button.primary:hover {
     color: #c155ff;
     background-color: transparent;
 }
+
 </style>
 
 <body>
@@ -175,7 +181,8 @@ button.primary:hover {
             </div>
         </aside>
     <main>
-        <header style="width: 100%; height: auto; display: flex; justify-content: center;">
+        <header style="width: 100%; height: auto; display: flex; justify-content: center;
+        border-bottom: 3px solid #111111">
             <div class="button" style="width: 25%;display: flex;
         align-items: center;
         flex-direction: column;">
@@ -208,7 +215,7 @@ button.primary:hover {
 
         </table>
     </main>
-
+</div>
     <script>
         function changeRouter(router) {
             document.location.href = router;

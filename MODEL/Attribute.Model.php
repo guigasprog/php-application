@@ -1,6 +1,6 @@
 <?php 
   namespace MODEL; 
-  class Account {
+  class Attribute {
        private ?int $id; 
        private ?int $strength;
        private ?int $dexterity; 

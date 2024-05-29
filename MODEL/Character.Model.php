@@ -1,6 +1,6 @@
 <?php 
   namespace MODEL; 
-  class Account {
+  class Character {
        private ?int $id; 
        private ?string $name;
        private ?int $class; 
