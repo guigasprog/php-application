@@ -56,10 +56,10 @@ class Character
       {$character->getIdAccount()}');";
 
       $con = Connection::connect();
-      $con->query($sql);
+      $character = $con->query($sql);
       $con = Connection::disconnect();
 
-      return Select();
+      return $character;
    }
 
 }

@@ -161,10 +161,15 @@ button.primary:hover {
                         <h6>Characters</h6>
                     </a>
                 </div>
+                <div class="card" onclick="changeRouter('./attribute/Attribute.View.php')">
+                    <a>
+                        <h6>Attributes</h6>
+                    </a>
+                </div>
             </div>
         </aside>
-        <main>
-
+        <main style="display: flex; justify-content: center; align-items: center; text-align: center; cursor: pointer" onclick="changeRouter('./game/mainPage.php')">
+            <h3>Aperte neste componente <br>para abrir o web game.</h3>
         </main>
     </div>
 
