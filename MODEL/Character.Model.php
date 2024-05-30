@@ -3,8 +3,9 @@
   class Character {
        private ?int $id; 
        private ?string $name;
-       private ?int $class; 
+       private ?string $class; 
        private ?int $idAttribute;
+       private ?int $idAccount;
 
        public function __construct() { }
 
@@ -38,6 +39,15 @@
 
       public function setIdAttribute(string $idAttribute){
         $this->idAttribute = $idAttribute; 
+      }
+
+      
+      public function getIdAccount(){
+        return $this->idAccount;       
+      }
+
+      public function setIdAccount(string $idAccount){
+        $this->idAccount = $idAccount; 
       }
      
   }

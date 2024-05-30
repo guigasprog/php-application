@@ -21,6 +21,7 @@ class Character
          $character->setName($row['name']);
          $character->setClass($row['class']);
          $character->setIdAttribute($row['idAttribute']);
+         $character->setIdAccount($row['idAccount']);
 
          $characters[] = $character;
       }
@@ -42,10 +43,24 @@ class Character
         $character->setName($row['name']);
         $character->setClass($row['class']);
         $character->setIdAttribute($row['idAttribute']);
+        $character->setIdAccount($row['idAccount']);
 
         return $character;
     }
 
+   public function Insert(\MODEL\Character $character){
+      $sql = "INSERT INTO autor(name, class, idAttribute, idAccount) VALUES('
+      {$character->getName()}','
+      {$character->getClass()}','
+      {$character->getIdAttribute()}','
+      {$character->getIdAccount()}');";
+
+      $con = Connection::connect();
+      $con->query($sql);
+      $con = Connection::disconnect();
+
+      return Select();
+   }
 
 }
 

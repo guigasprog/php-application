@@ -19,6 +19,13 @@ class Character
     
         return $dalCharacter->SelectById($id);
     }
+
+    public function Insert(\MODEL\Character $character)
+    {
+        $dalCharacter = new \DAL\Character;
+
+        return $dalCharacter->Insert($character);;
+    }
 }
 
 ?>

@@ -2,15 +2,10 @@
 include_once 'C:\xampp\htdocs\php-application\DAL\Account.php';
 // include_once '../../DAL/Account.php';
 use DAL\Account;
-include_once 'C:\xampp\htdocs\php-application\DAL\Character.php';
-// include_once '../../DAL/Account.php';
-use DAL\Character;
 
 $dalAccount = new \DAL\Account();
-$dalCharacter = new \DAL\Character();
 
 $accounts = $dalAccount->Select();
-$character = $dalCharacter->SelectById(1);
 ?>
 
 
@@ -126,8 +121,17 @@ main {
     transition: 300ms;
 }
 
+.rowSec {
+    background-color: #11111120;
+    transition: 300ms;
+} 
+
 .row:hover {
     background-color: #41414120;
+}
+
+.rowSec:hover {
+    background-color: #22222260;
 }
 
 .button {
@@ -175,8 +179,15 @@ button.primary:hover {
                         <h6>Accounts</h6>
                     </a>
                 </div>
-                <div class="card">
-
+                <div class="card" onclick="changeRouter('../character/Character.View.php')">
+                    <a>
+                        <h6>Characters</h6>
+                    </a>
+                </div>
+                <div class="card" onclick="changeRouter('../attribute/Attribute.View.php')">
+                    <a>
+                        <h6>Attributes</h6>
+                    </a>
                 </div>
             </div>
         </aside>
@@ -200,16 +211,18 @@ button.primary:hover {
                 <th>Username</th>
                 <th>Email</th>
                 <th>Password</th>
-                <th>ID Character</th>
             </tr>
 
-            <?php foreach ($accounts as $account) { ?>
-            <tr class="row">
+            <?php $i=0;
+            foreach ($accounts as $account) { 
+                $i++;
+                if($i%2 != 0) echo "<tr class='row'>";
+                else echo "<tr class='rowSec'>";
+            ?>
                 <td><?php echo $account->getId(); ?></td>
                 <td><?php echo $account->getUsername(); ?></td>
                 <td><?php echo $account->getEmail(); ?></td>
                 <td><?php echo $account->getPassword(); ?></td>
-                <td><?php echo $account->getIdCharacter(); ?></td>
             </tr>
             <?php } ?>
 

@@ -1,5 +1,17 @@
+<?php
+include_once 'C:\xampp\htdocs\php-application\DAL\Attribute.php';
+// include_once '../../DAL/Attribute.php';
+use DAL\Attribute;
+
+$dalAttribute = new \DAL\Attribute();
+
+$attributes = $dalAttribute->Select();
+?>
+
+
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accounts</title>
 </head>
+
 <style>
 * {
     margin: 0;
@@ -56,6 +69,7 @@ main {
     margin: 1%;
     border-radius: 10px;
     background-color: #41414110;
+    overflow: hidden;
 }
 
 .content {
@@ -85,7 +99,6 @@ main {
     background-color: #41414160;
 }
 
-
 .cardSelected {
     background-color: #41414160;
 }
@@ -108,8 +121,17 @@ main {
     transition: 300ms;
 }
 
+.rowSec {
+    background-color: #11111120;
+    transition: 300ms;
+} 
+
 .row:hover {
     background-color: #41414120;
+}
+
+.rowSec:hover {
+    background-color: #22222260;
 }
 
 .button {
@@ -142,6 +164,7 @@ button.primary:hover {
     color: #c155ff;
     background-color: transparent;
 }
+
 </style>
 
 <body>
@@ -151,29 +174,70 @@ button.primary:hover {
     <div class="conteudo">
         <aside>
             <div class="content">
-                <div class="card" onclick="changeRouter('./account/Account.View.php')">
+                <div class="card" onclick="changeRouter('../account/Account.View.php')">
                     <a>
                         <h6>Accounts</h6>
                     </a>
                 </div>
-                <div class="card" onclick="changeRouter('./character/Character.View.php')">
+                <div class="card" onclick="changeRouter('../character/Character.View.php')">
                     <a>
                         <h6>Characters</h6>
                     </a>
                 </div>
+                <div class="card cardSelected">
+                    <a>
+                        <h6>Attributes</h6>
+                    </a>
+                </div>
             </div>
         </aside>
-        <main>
+    <main>
+        <header style="width: 100%; height: auto; display: flex; justify-content: center;
+        border-bottom: 3px solid #111111">
+            <div class="button" style="width: 25%;display: flex;
+        align-items: center;
+        flex-direction: column;">
+                <button class="primary" onclick="changeRouter('../main.php')">
+                    Back
+                </button>
+            </div>
+            <h3 style="width: 75%; display: flex;
+        align-items: center;
+        flex-direction: column;">List Attribute</h3>
+        </header>
+        <table style="background-color: #41414120;">
+            <tr>
+                <th>ID</th>
+                <th>Strength</th>
+                <th>Dexterity</th>
+                <th>Vitality</th>
+                <th>Intelligence</th>
+                <th>Mind</th>
+            </tr>
 
-        </main>
-    </div>
+            <?php $i=0;
+            foreach ($attributes as $attribute) { 
+                $i++;
+                if($i%2 != 0) echo "<tr class='row'>";
+                else echo "<tr class='rowSec'>";
+            ?>
+                <td><?php echo $attribute->getId(); ?></td>
+                <td><?php echo $attribute->getStrength(); ?></td>
+                <td><?php echo $attribute->getDexterity(); ?></td>
+                <td><?php echo $attribute->getVitality(); ?></td>
+                <td><?php echo $attribute->getIntelligence(); ?></td>
+                <td><?php echo $attribute->getMind(); ?></td>
+            </tr>
+            <?php } ?>
 
+        </table>
+    </main>
+</div>
     <script>
         function changeRouter(router) {
             document.location.href = router;
         }
     </script>
-
 </body>
 
 </html>

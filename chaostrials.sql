@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/05/2024 às 01:57
+-- Tempo de geração: 30/05/2024 às 01:14
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `chaostrial`
+-- Banco de dados: `chaostrials`
 --
 
 -- --------------------------------------------------------
@@ -67,10 +67,10 @@ INSERT INTO `attribute` (`id`, `strength`, `dexterity`, `vitality`, `intelligenc
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `character`
+-- Estrutura para tabela `characters`
 --
 
-CREATE TABLE `character` (
+CREATE TABLE `characters` (
   `id` int(11) NOT NULL,
   `name` varchar(80) NOT NULL,
   `class` varchar(30) NOT NULL,
@@ -78,10 +78,10 @@ CREATE TABLE `character` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `character`
+-- Despejando dados para a tabela `characters`
 --
 
-INSERT INTO `character` (`id`, `name`, `class`, `idAttribute`) VALUES
+INSERT INTO `characters` (`id`, `name`, `class`, `idAttribute`) VALUES
 (1, 'Guigas', '1', 1);
 
 --
@@ -102,9 +102,9 @@ ALTER TABLE `attribute`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `character`
+-- Índices de tabela `characters`
 --
-ALTER TABLE `character`
+ALTER TABLE `characters`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idAttribute` (`idAttribute`);
 
@@ -125,9 +125,9 @@ ALTER TABLE `attribute`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de tabela `character`
+-- AUTO_INCREMENT de tabela `characters`
 --
-ALTER TABLE `character`
+ALTER TABLE `characters`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -138,12 +138,12 @@ ALTER TABLE `character`
 -- Restrições para tabelas `account`
 --
 ALTER TABLE `account`
-  ADD CONSTRAINT `idCharacter` FOREIGN KEY (`idCharacter`) REFERENCES `character` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `idCharacter` FOREIGN KEY (`idCharacter`) REFERENCES `characters` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `character`
+-- Restrições para tabelas `characters`
 --
-ALTER TABLE `character`
+ALTER TABLE `characters`
   ADD CONSTRAINT `idAttribute` FOREIGN KEY (`idAttribute`) REFERENCES `attribute` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 

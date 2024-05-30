@@ -21,7 +21,6 @@ class Account
          $account->setUsername($row['username']);
          $account->setEmail($row['email']);
          $account->setPassword($row['password']);
-         $account->setIdCharacter($row['idCharacter']);
 
          $accounts[] = $account;
       }

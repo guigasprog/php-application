@@ -5,7 +5,6 @@
        private ?string $username;
        private ?string $email; 
        private ?string $password; 
-       private ?int $idCharacter;
 
        public function __construct() { }
 
@@ -39,14 +38,6 @@
 
       public function setPassword(string $password){
         $this->password = $password; 
-      }
-
-      public function getIdCharacter(){
-        return $this->idCharacter;       
-      }
-
-      public function setIdCharacter(string $idCharacter){
-        $this->idCharacter = $idCharacter; 
       }
      
   }
