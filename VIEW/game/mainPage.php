@@ -17,6 +17,12 @@
 </head>
 
 <style>
+
+@font-face {
+    font-family: centurion;
+    src: url(./fonts/the-centurion/Centurion.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -25,12 +31,20 @@
 
 }
 
+.gradient {
+    width: 200%;
+    height: 100%;
+    background-image: linear-gradient(to right, transparent, black, transparent);
+    transition: 1000ms;
+}
+
 body {
     width: 100%;
     height: 100vh;
     background-color: #111111;
     overflow: hidden;
 }
+
 .background {
     width: 100%;
     margin-top: -1%;
@@ -40,11 +54,18 @@ body {
 
 aside {
     width: 20%;
-    height: 30%;
+    height: 20%;
     position: absolute;
+    background: #11111180;
     top: 15%;
     left: 10%;
     text-align: center;
+    border-radius: 30px;
+    transition: 1000ms;
+}
+
+#aside2 {
+    left: 190%;
 }
 
 .campo {
@@ -99,42 +120,122 @@ button.primary:hover {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    transition: 1000ms;
+}
+
+#forms2 {
+    right: -105%;
 }
 
 </style>
 
 <body>
     <img src="./imgs/background.jpg" class="background">
-    <aside>
-        <h6>Jogue <span style="color: red">Chaos-Trials</span><br>Logue já</h6>
-    </aside>
+    <div class="gradient" id="gradient"></div>
+        <aside id="aside">
+            <h6 style="height: 15%; width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column">
+    Jogue
+</h6>
+    <h6><span style="color: red; font-family: centurion; font-size: 42px; height: 20%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;">Chaos-Trials</span></h6>
+            <h6 style="height: 80%; width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;">
+    <br><span style="color: cyan; cursor: pointer;" onclick="register()">
+    Registrar-se</span></h6>
+        </aside>
 
-    <div class="forms">
-        <header style="height: 20%; display: flex; justify-content: center; align-items: center;">
-            <h5>Login</h5>
-        </header>
-        <main style="height: 80%">
-            <div class="campo">
-                <h6 style="width: 100%; text-align: start;">Username</h6>
-                <input type="text">
-            </div>
-            <div class="campo">
-                <h6 style="width: 100%; text-align: start;">Email</h6>
-                <input type="text">
-            </div>
-            <div class="campo">
-                <h6 style="width: 100%; text-align: start;">Password</h6>
-                <input type="password">
-            </div>
-            <div class="campo">
-                <button class="primary">Submit</button>
-            </div>
-        </main>
-    </div>
+        <div class="forms" id="forms">
+            <header style="height: 20%; display: flex; justify-content: center; align-items: center;">
+                <h5>Login</h5>
+            </header>
+            <main style="height: 80%">
+                <div class="campo">
+                    <h6 style="width: 100%; text-align: start;">Username</h6>
+                    <input type="text">
+                </div>
+                <div class="campo">
+                    <h6 style="width: 100%; text-align: start;">Email</h6>
+                    <input type="text">
+                </div>
+                <div class="campo">
+                    <h6 style="width: 100%; text-align: start;">Password</h6>
+                    <input type="password">
+                </div>
+                <div class="campo">
+                    <button class="primary">Logar</button>
+                </div>
+            </main>
+        </div>
+
+        <aside id="aside2">
+        <h6 style="height: 15%; width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column">
+    Já tenho uma conta em
+</h6>
+    <h6><span style="color: red; font-family: centurion; font-size: 42px; height: 20%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;">Chaos-Trials</span></h6>
+            <h6 style="height: 80%; width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;">
+    <br><span style="color: cyan; cursor: pointer;" onclick="login()">
+    Logar</span></h6>
+        </aside>
+
+        <div class="forms" id="forms2">
+            <header style="height: 20%; display: flex; justify-content: center; align-items: center;">
+                <h5>Registrar-se</h5>
+            </header>
+            <main style="height: 80%">
+                <div class="campo">
+                    <h6 style="width: 100%; text-align: start;">Username</h6>
+                    <input type="text">
+                </div>
+                <div class="campo">
+                    <h6 style="width: 100%; text-align: start;">Email</h6>
+                    <input type="text">
+                </div>
+                <div class="campo">
+                    <h6 style="width: 100%; text-align: start;">Password</h6>
+                    <input type="password">
+                </div>
+                <div class="campo">
+                    <button class="primary">Registar-se</button>
+                </div>
+            </main>
+        </div>
+    
 
     <script>
         function changeRouter(router) {
             document.location.href = router;
+        }
+        function register() {
+            document.getElementById('aside').style.left = "-110%";
+            document.getElementById('forms').style.right = "105%";
+            document.getElementById('gradient').style.marginLeft = "-100%";
+            document.getElementById('aside2').style.left = "70%";
+            document.getElementById('forms2').style.right = "75%";
+        }
+        function login() {
+            document.getElementById('aside').style.left = "10%";
+            document.getElementById('forms').style.right = "5%";
+            document.getElementById('gradient').style.marginLeft = "0";
+            document.getElementById('aside2').style.left = "190%";
+            document.getElementById('forms2').style.right = "-105%";
         }
     </script>
 

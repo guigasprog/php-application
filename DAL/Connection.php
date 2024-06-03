@@ -3,7 +3,7 @@
     
     use \PDO;
    class Connection {
-      private static $dbNome = 'chaostrials'; 
+      private static $dbNome = 'chaos-trials'; 
       private static $dbHost = 'localhost';
       private static $dbUsuario = 'root'; 
       private static $dbSenha = '';

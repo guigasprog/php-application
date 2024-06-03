@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30/05/2024 às 01:14
+-- Tempo de geração: 04/06/2024 às 00:35
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `chaostrials`
+-- Banco de dados: `chaos-trials`
 --
 
 -- --------------------------------------------------------
@@ -31,16 +31,16 @@ CREATE TABLE `account` (
   `id` int(11) NOT NULL,
   `username` varchar(80) NOT NULL,
   `email` varchar(120) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `idCharacter` int(11) NOT NULL
+  `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `account`
 --
 
-INSERT INTO `account` (`id`, `username`, `email`, `password`, `idCharacter`) VALUES
-(1, 'guigas', 'guilhermedelgado876@gmail.com', 'passwordç', 1);
+INSERT INTO `account` (`id`, `username`, `email`, `password`) VALUES
+(1, 'guigas', 'guilhermedelgado876@gmail.com', 'passwordç'),
+(2, 'uryeljo', 'uryeljo13@gmail.com', 'abobra');
 
 -- --------------------------------------------------------
 
@@ -62,7 +62,9 @@ CREATE TABLE `attribute` (
 --
 
 INSERT INTO `attribute` (`id`, `strength`, `dexterity`, `vitality`, `intelligence`, `mind`) VALUES
-(1, 1, 1, 1, 1, 1);
+(1, 5, 2, 4, -3, 0),
+(2, -4, 4, -1, 5, 5),
+(3, 1, 8, -1, 5, -5);
 
 -- --------------------------------------------------------
 
@@ -74,6 +76,7 @@ CREATE TABLE `characters` (
   `id` int(11) NOT NULL,
   `name` varchar(80) NOT NULL,
   `class` varchar(30) NOT NULL,
+  `idAccount` int(11) NOT NULL,
   `idAttribute` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -81,8 +84,10 @@ CREATE TABLE `characters` (
 -- Despejando dados para a tabela `characters`
 --
 
-INSERT INTO `characters` (`id`, `name`, `class`, `idAttribute`) VALUES
-(1, 'Guigas', '1', 1);
+INSERT INTO `characters` (`id`, `name`, `class`, `idAccount`, `idAttribute`) VALUES
+(1, 'Adonis', 'Guerreiro', 1, 1),
+(2, 'Agatha', 'Assassino', 1, 3),
+(3, 'Fravio', 'Mago', 2, 2);
 
 --
 -- Índices para tabelas despejadas
@@ -92,8 +97,7 @@ INSERT INTO `characters` (`id`, `name`, `class`, `idAttribute`) VALUES
 -- Índices de tabela `account`
 --
 ALTER TABLE `account`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idCharacter` (`idCharacter`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices de tabela `attribute`
@@ -106,7 +110,8 @@ ALTER TABLE `attribute`
 --
 ALTER TABLE `characters`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `idAttribute` (`idAttribute`);
+  ADD KEY `idAttribute` (`idAttribute`),
+  ADD KEY `idAccount` (`idAccount`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
@@ -116,34 +121,29 @@ ALTER TABLE `characters`
 -- AUTO_INCREMENT de tabela `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `attribute`
 --
 ALTER TABLE `attribute`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `characters`
 --
 ALTER TABLE `characters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para tabelas despejadas
 --
 
 --
--- Restrições para tabelas `account`
---
-ALTER TABLE `account`
-  ADD CONSTRAINT `idCharacter` FOREIGN KEY (`idCharacter`) REFERENCES `characters` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Restrições para tabelas `characters`
 --
 ALTER TABLE `characters`
+  ADD CONSTRAINT `idAccount` FOREIGN KEY (`idAccount`) REFERENCES `account` (`id`),
   ADD CONSTRAINT `idAttribute` FOREIGN KEY (`idAttribute`) REFERENCES `attribute` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
