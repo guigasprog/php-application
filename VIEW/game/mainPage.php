@@ -1,4 +1,12 @@
+<?php 
+include_once 'C:\xampp\htdocs\php-application\DAL\Account.php';
+// include_once '../../DAL/Account.php';
+use DAL\Account;
 
+$dalAccount = new \DAL\Account();
+
+$accounts = $dalAccount->Select();
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -174,6 +182,21 @@ button.primary:hover {
                 </div>
             </main>
         </div>
+        <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $name = htmlspecialchars($_POST['fname']);
+            $email = htmlspecialchars($_POST['femail']);
+            $senha = htmlspecialchars($_POST['fsenha']);
+            if(!isset($name)) {
+                if(!isset($email)) {
+                    if(!isset($senha)) {
+                        $account = $dalAccount->Insert($name, $email, $senha);
+                    }
+                } 
+            }
+            
+            }
+        ?>
 
         <aside id="aside2">
         <h6 style="height: 15%; width: 100%;

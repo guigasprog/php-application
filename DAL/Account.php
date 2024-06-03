@@ -7,7 +7,7 @@ include_once 'C:\xampp\htdocs\php-application\MODEL\Account.Model.php';
 
 class Account
 {
-      public function Select()
+   public function Select()
    {
       $sql = "Select * from account;";
       $con = Connection::connect();
@@ -26,6 +26,21 @@ class Account
       }
 
       return $accounts;
+   }
+
+   public function Insert($name, $email, $senha)
+   {
+      $sql = "INSERT INTO account(username, email, password) VALUES('
+      {$name}','
+      {$email}','
+      {$senha}');";
+      
+      $account = new \MODEL\Account();
+
+      $con = Connection::connect();
+      $account = $con->query($sql);
+      $con = Connection::disconnect();
+      return $account;
    }
 
 
