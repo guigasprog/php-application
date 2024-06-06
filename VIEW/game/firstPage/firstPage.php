@@ -2,25 +2,6 @@
 include_once 'C:\xampp\htdocs\php-application\BLL\Account.BLL.php';
 use BLL\Account;
 
-setcookie("account", '', time() + (86400 * 30), "/", "", 0);
-
-if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) { 
-    if(isset($_POST['email']) && isset($_POST['password'])) {
-        if (\BLL\Account::login($_POST['email'], $_POST['password'])) {
-            header('Location: http://localhost:80/php-application/VIEW/main.php');
-        }
-    }
-}
-
-if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) { 
-    if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['username'])) {
-        $account = new \MODEL\Account();
-        \BLL\Account::register($_POST['username'], $_POST['email'], $_POST['password']);
-        if (\BLL\Account::login($_POST['email'], $_POST['password'])) {
-            header('Location: http://localhost:80/php-application/VIEW/main.php');
-        }
-    }
-}
 
 ?>
 
@@ -42,150 +23,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
 
 <style>
 
-@font-face {
-    font-family: centurion;
-    src: url(./fonts/the-centurion/Centurion.ttf);
-}
-
 * {
     margin: 0;
     padding: 0;
     color: #ffffff;
     font-family: "Space Grotesk", sans-serif;
-}
-
-.gradient {
-    width: 200%;
-    height: 100%;
-    background-image: linear-gradient(to right, transparent, black, transparent);
-    transition: 1000ms;
-}
-
-body {
-    width: 100%;
-    height: 100vh;
-    background-color: #111111;
-    overflow: hidden;
-}
-
-.background {
-    width: 100%;
-    margin-top: -1%;
-    z-index: -1;
-    position: absolute;
-}
-
-aside {
-    width: 20%;
-    height: 25%;
-    position: absolute;
-    background: #11111180;
-    top: 15%;
-    left: 10%;
-    text-align: center;
-    border-radius: 30px;
-    transition: 1000ms;
-}
-
-#aside2 {
-    left: 190%;
-}
-
-.campo {
-    width: 100%;
-    height: 25%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.button {
-    width: 15%;
-    display: flex;
-    align-items: center;
-    justify-content: center
-}
-
-button {
-    width: 140px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 600;
-    transition: 300ms;
-    border: 0;
-}
-
-input {
-    width: 100%;
-}
-
-input[type=submit] {
-    width: 140px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 600;
-    transition: 300ms;
-    border: 0;
-}
-
-input[type=submit].primary {
-    border: 3px solid #c155ff;
-    background-color: #c155ff;
-}
-
-input[type=submit].primary:hover {
-    color: #c155ff;
-    background-color: transparent;
-}
-
-button.primary {
-    border: 3px solid #c155ff;
-    background-color: #c155ff;
-}
-
-button.primary:hover {
-    color: #c155ff;
-    background-color: transparent;
-}
-
-button.secondary {
-    border: 3px solid #ffffff;
-    background-color: #ffffff;
-    color: #111111;
-}
-
-button.secondary:hover {
-    color: #ffffff;
-    background-color: transparent;
-}
-
-.forms {
-    width: 20%;
-    height: 60%;
-    position: absolute;
-    top: 20%;
-    right: 5%;
-    background: #14141495;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    transition: 1000ms;
-}
-
-#forms2 {
-    right: -105%;
 }
 
 </style>
@@ -284,20 +126,6 @@ button.secondary:hover {
     <script>
         function changeRouter(router) {
             document.location.href = router;
-        }
-        function register() {
-            document.getElementById('aside').style.left = "-110%";
-            document.getElementById('forms').style.right = "105%";
-            document.getElementById('gradient').style.marginLeft = "-100%";
-            document.getElementById('aside2').style.left = "70%";
-            document.getElementById('forms2').style.right = "75%";
-        }
-        function login() {
-            document.getElementById('aside').style.left = "10%";
-            document.getElementById('forms').style.right = "5%";
-            document.getElementById('gradient').style.marginLeft = "0";
-            document.getElementById('aside2').style.left = "190%";
-            document.getElementById('forms2').style.right = "-105%";
         }
     </script>
     <?php 

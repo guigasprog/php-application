@@ -19,7 +19,6 @@
     padding: 0;
     color: #ffffff;
     font-family: "Space Grotesk", sans-serif;
-
 }
 
 body {
