@@ -9,7 +9,7 @@
 
        public function __construct() { }
 
-       public function getID(){
+       public function getId(){
            return $this->id; 
        }
 

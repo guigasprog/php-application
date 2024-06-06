@@ -13,6 +13,13 @@ class Account
         return $dalAccount->Select();
     }
 
+    public static function SelectByEmail(string $email)
+    {
+        $dalAccount = new \DAL\Account();
+    
+        return $dalAccount->SelectByEmail($email);
+    }
+
     public static function register(string $username, string $email, string $senha){
         $dalAccount = new \DAL\Account();
         $account = $dalAccount->Insert($username, $email, $senha);

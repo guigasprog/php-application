@@ -7,7 +7,7 @@ setcookie("account", '', time() + (86400 * 30), "/", "", 0);
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) { 
     if(isset($_POST['email']) && isset($_POST['password'])) {
         if (\BLL\Account::login($_POST['email'], $_POST['password'])) {
-            header('Location: http://localhost:80/php-application/VIEW/main.php');
+            header('Location: http://localhost:80/php-application/VIEW/game/firstPage/firstPage.php');
         }
     }
 }
@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
         $account = new \MODEL\Account();
         \BLL\Account::register($_POST['username'], $_POST['email'], $_POST['password']);
         if (\BLL\Account::login($_POST['email'], $_POST['password'])) {
-            header('Location: http://localhost:80/php-application/VIEW/main.php');
+            header('Location: http://localhost:80/php-application/VIEW/game/firstPage/firstPage.php');
         }
     }
 }

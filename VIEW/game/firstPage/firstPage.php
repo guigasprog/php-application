@@ -2,7 +2,12 @@
 include_once 'C:\xampp\htdocs\php-application\BLL\Account.BLL.php';
 use BLL\Account;
 
+include_once 'C:\xampp\htdocs\php-application\BLL\Character.BLL.php';
+use BLL\Character;
 
+$account = \BLL\Account::SelectByEmail($_COOKIE['account']);
+
+$characters = \BLL\Character::SelectByIdAccount($account->getId());
 ?>
 
 <!DOCTYPE html>
@@ -30,107 +35,124 @@ use BLL\Account;
     font-family: "Space Grotesk", sans-serif;
 }
 
+body {
+    width: 100%;
+    height: 100vh;
+    background-color: #111111;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.starting {
+    width: 100%;
+    height: 10%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15%;
+    animation: starting 3s forwards normal;
+}
+
+@keyframes starting {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    90% {
+        background-color: transparent;
+    }
+    100% {
+        margin-top: 0;
+        background-color: #141414;
+    }
+}
+
+@keyframes startingMenu {
+    from {
+        opacity: 0;
+        margin-top: 15%;
+    }
+    to {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+main {
+    width: 100%;
+    height: 90%;
+    background-color: #111111;
+    animation: startingMenu 3s forwards normal;
+    display: flex;
+    gap: 1%;
+}
+
+.cardPersonagem {
+    width: 20%;
+    height: 100%;
+    background-color: #141414;
+    transform: skew(-15deg);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    transition: all 500ms;
+    z-index: 0;
+    position: relative;
+}
+
+.cardPersonagem:hover {
+    background-color: #414141;
+    scale: 1.02;
+}
+
+.data {
+    transform: skew(15deg);
+}
+
 </style>
 
 <body>
-    <img src="./imgs/background.jpg" class="background">
-    <div class="gradient" id="gradient"></div>
-        <aside id="aside">
-            <h6 style="height: 15%; width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column">
-    Jogue
-</h6>
-    <h6><span style="color: red; font-family: centurion; font-size: 42px; height: 20%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;">Chaos-Trials</span></h6>
-            <h6 style="height: 80%; width: 100%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;">
-    <br>
-    <button class="secondary" onclick="register()">Registrar-se</button>
-        </aside>
-
-        <div class="forms" id="forms">
-            <header style="height: 20%; display: flex; justify-content: center; align-items: center;">
-                <h5>Login</h5>
-            </header>
-            <main style="height: 100%">
-                <form method="POST" style="height: 100%">
-                    <div class="campo">
-                        <h6 style="width: 100%; text-align: start;">Email</h6>
-                        <input type="text" name="email">
-                    </div>
-                    <div class="campo">
-                        <h6 style="width: 100%; text-align: start;">Password</h6>
-                        <input type="password" name="password">
-                    </div>
-                    <div class="campo">
-                        <input type="submit" name="login" class="primary" value="Logar"></button>
-                    </div>
-                </form>
-            </main>
-        </div>
-        
-
-        <aside id="aside2">
-        <h6 style="height: 15%; width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column">
-    Já tenho uma conta em
-</h6>
-    <h6><span style="color: red; font-family: centurion; font-size: 42px; height: 20%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;">Chaos-Trials</span></h6>
-            <h6 style="height: 80%; width: 100%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;">
-    <br>
-    <button class="secondary" onclick="login()">Logar-se</button>
-        </aside>
-
-        <div class="forms" id="forms2">
-            <header style="height: 20%; display: flex; justify-content: center; align-items: center;">
-                <h5>Registrar-se</h5>
-            </header>
-            <main style="height: 80%">
-                <form method="POST" style="height: 100%">
-                    <div class="campo">
-                        <h6 style="width: 100%; text-align: start;">Username</h6>
-                        <input type="text" name="username">
-                    </div>
-                    <div class="campo">
-                        <h6 style="width: 100%; text-align: start;">Email</h6>
-                        <input type="text" name="email">
-                    </div>
-                    <div class="campo">
-                        <h6 style="width: 100%; text-align: start;">Password</h6>
-                        <input type="password" name="password">
-                    </div>
-                    <div class="campo">
-                        <input type="submit" name="register" class="primary" value="Registrar"></button>
-                    </div>
-                </form>
-            </main>
-        </div>
-    
+    <div class="starting">
+        <h5 class="welcome">
+            Welcome 
+            <?php echo $account->getUsername();
+            ?>
+        </h5>
+    </div>
+    <main>
+        <?php 
+            if(!empty($characters)) {
+                foreach($characters as $character) {
+            
+        ?>
+            <div class="cardPersonagem">
+                <div class="data">
+                    <h6>
+                        <?php echo $character->getName() ?>
+                    </h6>
+                </div>
+            </div>
+        <?php }} else {?>
+            <div class="cardPersonagem" style="margin: 0 auto;">
+                <div class="data">
+                    <h1>
+                        +
+                    </h1>
+                </div>
+            </div>
+            <?php }?>
+    </main>
 
     <script>
         function changeRouter(router) {
             document.location.href = router;
         }
     </script>
-    <?php 
-
-    ?>
 </body>
 
 </html>

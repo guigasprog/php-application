@@ -20,7 +20,14 @@ class Character
         return $dalCharacter->SelectById($id);
     }
 
-    public function Insert(\MODEL\Character $character)
+    public static function SelectByIdAccount(int $idAccount)
+    {
+        $dalCharacter = new \DAL\Character();
+        $characters = $dalCharacter->SelectByIdAccount($idAccount);
+        if(!empty($characters)) return $characters;
+    }
+
+    public static function Insert(\MODEL\Character $character)
     {
         $dalCharacter = new \DAL\Character;
 
