@@ -111,9 +111,32 @@ main {
 }
 
 .data {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
     transform: skew(15deg);
 }
+.background-card {
+    width: 100%; height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    z-index: 0;
+}
 
+.nome {
+    width: 110%;
+    height: 10%;
+    background: #111111;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+}
 </style>
 
 <body>
@@ -132,12 +155,26 @@ main {
         ?>
             <div class="cardPersonagem">
                 <div class="data">
-                    <h6>
-                        <?php echo $character->getName() ?>
-                    </h6>
+                    <div class="background-card">
+                        <img src="../imgs/class/<?php echo $character->getClass(); ?>.jpeg" alt="" srcset="">
+                    </div>
+                    <div class="nome">
+                        <h6 style="z-index: 1">
+                            <?php echo $character->getName() ?>
+                        </h6>
+                    </div>
+                    
                 </div>
             </div>
-        <?php }} else {?>
+        <?php } ?>
+            <div class="cardPersonagem">
+                <div class="data">
+                    <h1>
+                        +
+                    </h1>
+                </div>
+            </div>
+        <?php } else {?>
             <div class="cardPersonagem" style="margin: 0 auto;">
                 <div class="data">
                     <h1>
