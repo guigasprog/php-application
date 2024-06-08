@@ -167,6 +167,7 @@ main {
                 </div>
             </div>
         <?php } ?>
+        <?php if(!sizeof($characters) == 5) { ?>
             <div class="cardPersonagem">
                 <div class="data">
                     <h1>
@@ -174,7 +175,7 @@ main {
                     </h1>
                 </div>
             </div>
-        <?php } else {?>
+        <?php }} else {?>
             <div class="cardPersonagem" style="margin: 0 auto;">
                 <div class="data">
                     <h1>
