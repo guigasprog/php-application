@@ -2,6 +2,7 @@
 namespace DAL; //Data Access Layer
 include_once 'C:\xampp\htdocs\php-application\DAL\Connection.php';
 include_once 'C:\xampp\htdocs\php-application\MODEL\Account.Model.php';
+include_once 'C:\xampp\htdocs\php-application\MODEL\Character.Model.php';
 // include_once '../MODEL/Account.Model.php';
 // include_once './Connection.php';
 
@@ -54,6 +55,33 @@ class Account
       $account = $con->query($sql);
       $con = Connection::disconnect();
       return $account;
+   }
+
+   public function Delete($idAccount){
+
+      $sql = "Select * from characters Where idAccount='{$idAccount}';";
+      $con = Connection::connect();
+      $data = $con->query($sql);
+      $con = Connection::disconnect();
+      foreach ($data as $row) {
+         $sql = "delete from attribute WHERE id = '{$row['idAttribute']}';";
+         $con = Connection::connect();
+         $query = $con->query($sql);
+         $con = Connection::disconnect();
+
+         $sql = "delete from characters WHERE id = '{$row['id']}';";
+         $con = Connection::connect();
+         $query = $con->query($sql);
+         $con = Connection::disconnect();
+      }
+
+   
+      $sql = "delete from account WHERE id = '{$idAccount}';";
+      $con = Connection::connect();
+      $query = $con->query($sql);
+      $con = Connection::disconnect();
+
+      return true;
    }
 
 

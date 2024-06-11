@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create'])) {
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accounts</title>
+    <title>Chaos-Trials</title>
 </head>
 
 <style>
@@ -464,7 +464,9 @@ button.danger:hover {
         <h5>Isso vai deletar todos seus personagens!</h5>
         <div class="opcoes" style="width: 100%; display: flex; gap: 15px">
             <button onclick="openConfirmacao('2')" class="secondary" style="width: 90%; margin: 5%;"><h6>Não Apagar</h6></button>
-            <button class="danger" style="width: 90%; margin: 5%;"><h6>Apagar</h6></button>
+            <button class="danger" style="width: 90%; margin: 5%;" onclick="remover( <?php echo $account->getId(); ?> )">
+                <h6>Apagar</h6>
+            </button>
         </div>
         
     </modal>
@@ -473,6 +475,10 @@ button.danger:hover {
 
         function changeRouter(router) {
             document.location.href = router;
+        }
+
+        function remover(id) {
+            location.href = '../removeAccount/removerAccount.php?id=' + id;
         }
 
         function openDialog(aa) {

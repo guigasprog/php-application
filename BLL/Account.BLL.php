@@ -20,6 +20,13 @@ class Account
         return $dalAccount->SelectByEmail($email);
     }
 
+    public static function Delete(int $idAccount)
+    {
+        $dalAccount = new \DAL\Account();
+    
+        return $dalAccount->Delete($idAccount);
+    }
+
     public static function register(string $username, string $email, string $senha){
         $dalAccount = new \DAL\Account();
         $account = $dalAccount->Insert($username, $email, $senha);
