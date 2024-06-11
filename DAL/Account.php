@@ -57,6 +57,18 @@ class Account
       return $account;
    }
 
+   public function UpdateUsername($username)
+   {
+      $sql = "INSERT INTO account(username, email, password) VALUES('{$name}','{$email}','{$senha}');";
+      
+      $account = new \MODEL\Account();
+
+      $con = Connection::connect();
+      $account = $con->query($sql);
+      $con = Connection::disconnect();
+      return $account;
+   }
+
    public function Delete($idAccount){
 
       $sql = "Select * from characters Where idAccount='{$idAccount}';";

@@ -28,6 +28,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create'])) {
     }
 }
 
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) { 
+    if(isset($_POST['namePerson'])) {
+
+        if (\BLL\Account::UpdateUsername($_POST['namePerson'])) {
+            header('Location: http://localhost:80/php-application/VIEW/game/firstPage/firstPage.php');
+        }
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -195,6 +204,20 @@ main {
     left: 35vw;
     width: 30vw;
     height: 40vh;
+    background-color: #1d1d1dec;
+    z-index: -1;
+    opacity: 0;
+    transition: 300ms;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#alterarNome {
+    position: absolute;
+    top: 33vh;
+    left: 33vw;
+    width: 33vw;
+    height: 33vh;
     background-color: #1d1d1dec;
     z-index: -1;
     opacity: 0;
@@ -455,8 +478,22 @@ button.danger:hover {
     </modal>
 
     <modal id="funcoes">
-        <button class="secondary" style="width: 90%; margin: 5%;"><h6>Alterar Username</h6></button>
+        <button onclick="openAlterar(true)" class="secondary" style="width: 90%; margin: 5%;"><h6>Alterar Username</h6></button>
         <button onclick="openConfirmacao('1')" class="danger" style="width: 90%; margin: 5%;"><h6>Apagar Conta</h6></button>
+    </modal>
+
+    <modal id="alterarNome" style="text-align: center">
+        <form class="content" style="flex-direction: column" method="POST">
+            <div class="row">
+                <h5>Nome do Conta</h5>
+                <h6>Isso não afeta nada em seu jogo</h6>
+                <input type="text" style="width: 80%" id="namePerson" name="namePerson">
+            </div>
+            <div class="opcoes" style="width: 100%; display: flex; gap: 15px">
+                <button onclick="openAlterar(false)" class="secondary" style="width: 50%; margin: 5%;"><h6>Voltar</h6></button>
+                <input type="submit" class="primary" name="update" style="width: 50%; margin: 5%;" value="Trocar">
+            </div>
+        </form>
     </modal>
 
     <modal id="confirmacao" style="text-align: center">
@@ -468,7 +505,6 @@ button.danger:hover {
                 <h6>Apagar</h6>
             </button>
         </div>
-        
     </modal>
 
     <script>
@@ -525,6 +561,20 @@ button.danger:hover {
                 document.getElementById("confirmacao").style.opacity="0";
                 setTimeout(
                     ()=>document.getElementById("confirmacao").style.zIndex = "-1", 100
+                )
+            }
+        }
+
+        function openAlterar(abrir) {
+            if(abrir) {
+                document.getElementById("alterarNome").style.zIndex = "5000";
+                setTimeout(
+                    ()=>document.getElementById("alterarNome").style.opacity="1", 100
+                )
+            } else {
+                document.getElementById("alterarNome").style.opacity="0";
+                setTimeout(
+                    ()=>document.getElementById("alterarNome").style.zIndex = "-1", 100
                 )
             }
         }

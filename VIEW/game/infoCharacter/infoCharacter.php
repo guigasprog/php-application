@@ -31,6 +31,7 @@
 </head>
 
 <style>
+
 * {
     margin: 0;
     padding: 0;
@@ -46,10 +47,44 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+.background {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.background img {
+    width: 100%;
+    filter: blur(2px) brightness(80%);
+}
+
+#informacoes {
+    position: absolute;
+    top: 15vh;
+    left: 20vw;
+    width: 60vw;
+    height: 70vh;
+    background-color: #1d1d1dec;
+    z-index: 5000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
 </style>
 
 <body>
-    
+    <div class="background">
+        <img src="../imgs/backgroundclass/<?php echo $character->getClass(); ?>.png">
+    </div>
+    <modal id="informacoes">
+
+    </modal>
 </body>
 
 </html
