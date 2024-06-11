@@ -30,6 +30,27 @@ class Attribute
       return $attributes;
    }
 
+   public function SelectById(int $id)
+   {
+        $sql = 'Select * from attribute Where id=?;';
+        $con = Connection::connect();
+        $query = $con->prepare($sql);
+        $query->execute(array($id));
+        $row = $query->fetch(\PDO::FETCH_ASSOC);
+        $con = Connection::disconnect();
+
+        $attribute = new \MODEL\Attribute();
+
+        $attribute->setId($row['id']);
+        $attribute->setStrength($row['strength']);
+        $attribute->setDexterity($row['dexterity']);
+        $attribute->setVitality($row['vitality']);
+        $attribute->setIntelligence($row['intelligence']);
+        $attribute->setMind($row['mind']);
+
+        return $attribute;
+    }
+
    public function Insert(\MODEL\Attribute $attribute) 
    {
       $sql = "INSERT INTO attribute(strength, dexterity, vitality, intelligence, mind) VALUES('

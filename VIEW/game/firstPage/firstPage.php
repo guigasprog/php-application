@@ -344,14 +344,14 @@ button.danger:hover {
                 foreach($characters as $character) {
             
         ?>
-            <div class="cardPersonagem">
+            <div class="cardPersonagem" onclick="selectedCharacter(<?php echo $character->getId();?>)">
                 <div class="data">
                     <div class="background-card">
-                        <img src="../imgs/class/<?php echo $character->getClass(); ?>.jpeg" alt="" srcset="">
+                        <img src="../imgs/class/<?php echo $character->getClass(); ?>.jpeg">
                     </div>
                     <div class="nome">
                         <h6 style="z-index: 1">
-                            <?php echo $character->getName() ?>
+                            <?php echo $character->getName() ?> - Lvl.<?php echo $character->getLevel(); ?>
                         </h6>
                     </div>
                     
@@ -464,7 +464,7 @@ button.danger:hover {
         <h5>Isso vai deletar todos seus personagens!</h5>
         <div class="opcoes" style="width: 100%; display: flex; gap: 15px">
             <button onclick="openConfirmacao('2')" class="secondary" style="width: 90%; margin: 5%;"><h6>Não Apagar</h6></button>
-            <button class="danger" style="width: 90%; margin: 5%;" onclick="remover( <?php echo $account->getId(); ?> )">
+            <button class="danger" style="width: 90%; margin: 5%;" onclick="removerAccount( <?php echo $account->getId(); ?> )">
                 <h6>Apagar</h6>
             </button>
         </div>
@@ -477,7 +477,11 @@ button.danger:hover {
             document.location.href = router;
         }
 
-        function remover(id) {
+        function selectedCharacter(idCharacter) {
+            location.href = '../infoCharacter/infoCharacter.php?id=' + idCharacter;
+        }
+
+        function removerAccount(id) {
             location.href = '../removeAccount/removerAccount.php?id=' + id;
         }
 

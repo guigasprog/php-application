@@ -214,6 +214,7 @@ button.primary:hover h6 {
                 <th>ID Account</th>
                 <th>Name</th>
                 <th>Class</th>
+                <th>Level</th>
                 <th>ID Attribute</th>
             </tr>
 
@@ -227,6 +228,7 @@ button.primary:hover h6 {
                 <td><?php echo $character->getIdAccount(); ?></td>
                 <td><?php echo $character->getName(); ?></td>
                 <td><?php echo $character->getClass(); ?></td>
+                <td><?php echo $character->getLevel(); ?> - xp: <?php echo $character->getXp(); ?></td>
                 <td><?php echo $character->getIdAttribute(); ?></td>
             </tr>
             <?php } ?>

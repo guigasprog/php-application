@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04/06/2024 às 00:35
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Generation Time: Jun 11, 2024 at 05:10 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `chaos-trials`
+-- Database: `chaos-trials`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `account`
+-- Table structure for table `account`
 --
 
 CREATE TABLE `account` (
@@ -35,17 +35,16 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `account`
+-- Dumping data for table `account`
 --
 
 INSERT INTO `account` (`id`, `username`, `email`, `password`) VALUES
-(1, 'guigas', 'guilhermedelgado876@gmail.com', 'passwordç'),
-(2, 'uryeljo', 'uryeljo13@gmail.com', 'abobra');
+(3, 'Guigas', '4guigamers@gmail.com', 'guiegu12.');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `attribute`
+-- Table structure for table `attribute`
 --
 
 CREATE TABLE `attribute` (
@@ -58,55 +57,55 @@ CREATE TABLE `attribute` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `attribute`
+-- Dumping data for table `attribute`
 --
 
 INSERT INTO `attribute` (`id`, `strength`, `dexterity`, `vitality`, `intelligence`, `mind`) VALUES
-(1, 5, 2, 4, -3, 0),
-(2, -4, 4, -1, 5, 5),
-(3, 1, 8, -1, 5, -5);
+(6, -5, -5, 0, 10, 10),
+(7, 1, 4, -3, 4, 4);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `characters`
+-- Table structure for table `characters`
 --
 
 CREATE TABLE `characters` (
   `id` int(11) NOT NULL,
   `name` varchar(80) NOT NULL,
   `class` varchar(30) NOT NULL,
+  `level` int(11) NOT NULL,
+  `xp` decimal(10,2) NOT NULL,
   `idAccount` int(11) NOT NULL,
   `idAttribute` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `characters`
+-- Dumping data for table `characters`
 --
 
-INSERT INTO `characters` (`id`, `name`, `class`, `idAccount`, `idAttribute`) VALUES
-(1, 'Adonis', 'Guerreiro', 1, 1),
-(2, 'Agatha', 'Assassino', 1, 3),
-(3, 'Fravio', 'Mago', 2, 2);
+INSERT INTO `characters` (`id`, `name`, `class`, `level`, `xp`, `idAccount`, `idAttribute`) VALUES
+(6, 'Paty Tick Estar', 'Clerigo', 1, 0.00, 3, 6),
+(7, 'Bobes Ponja', 'Arqueiro', 1, 0.00, 3, 7);
 
 --
--- Índices para tabelas despejadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices de tabela `account`
+-- Indexes for table `account`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `attribute`
+-- Indexes for table `attribute`
 --
 ALTER TABLE `attribute`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `characters`
+-- Indexes for table `characters`
 --
 ALTER TABLE `characters`
   ADD PRIMARY KEY (`id`),
@@ -114,33 +113,33 @@ ALTER TABLE `characters`
   ADD KEY `idAccount` (`idAccount`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `account`
+-- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de tabela `attribute`
+-- AUTO_INCREMENT for table `attribute`
 --
 ALTER TABLE `attribute`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de tabela `characters`
+-- AUTO_INCREMENT for table `characters`
 --
 ALTER TABLE `characters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Restrições para tabelas despejadas
+-- Constraints for dumped tables
 --
 
 --
--- Restrições para tabelas `characters`
+-- Constraints for table `characters`
 --
 ALTER TABLE `characters`
   ADD CONSTRAINT `idAccount` FOREIGN KEY (`idAccount`) REFERENCES `account` (`id`),

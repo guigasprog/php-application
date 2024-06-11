@@ -20,6 +20,8 @@ class Character
          $character->setId($row['id']);
          $character->setName($row['name']);
          $character->setClass($row['class']);
+         $character->setLevel($row['level']);
+         $character->setXp($row['xp']);
          $character->setIdAttribute($row['idAttribute']);
          $character->setIdAccount($row['idAccount']);
 
@@ -42,6 +44,8 @@ class Character
         $character->setId($row['id']);
         $character->setName($row['name']);
         $character->setClass($row['class']);
+        $character->setLevel($row['level']);
+        $character->setXp($row['xp']);
         $character->setIdAttribute($row['idAttribute']);
         $character->setIdAccount($row['idAccount']);
 
@@ -60,6 +64,8 @@ class Character
          $character->setId($row['id']);
          $character->setName($row['name']);
          $character->setClass($row['class']);
+         $character->setLevel($row['level']);
+         $character->setXp($row['xp']);
          $character->setIdAttribute($row['idAttribute']);
          $character->setIdAccount($row['idAccount']);
 
@@ -69,7 +75,7 @@ class Character
     }
 
    public function Insert(\MODEL\Character $character){
-      $sql = "INSERT INTO characters(name, class, idAttribute, idAccount) VALUES('{$character->getName()}','{$character->getClass()}','{$character->getIdAttribute()}','{$character->getIdAccount()}');";
+      $sql = "INSERT INTO characters(name, class, level, xp, idAttribute, idAccount) VALUES('{$character->getName()}','{$character->getClass()}','{$character->getLevel()}','{$character->getXp()}','{$character->getIdAttribute()}','{$character->getIdAccount()}');";
 
       $con = Connection::connect();
       $con->query($sql);

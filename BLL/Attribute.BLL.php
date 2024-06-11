@@ -16,6 +16,13 @@ class Attribute
         return $dalAttribute->Select();
     }
 
+    public static function SelectById(int $id)
+    {
+        $dalAttribute = new \DAL\Attribute();
+    
+        return $dalAttribute->SelectById($id);
+    }
+
     public static function Insert($forca, $destreza, $vitalidade, $inteligencia, $mente)
     {
         $dalAttribute = new \DAL\Attribute();

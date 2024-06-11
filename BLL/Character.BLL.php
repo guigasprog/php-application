@@ -13,7 +13,7 @@ class Character
         return $dalCharacter->Select();
     }
 
-    public function SelectById(int $id)
+    public static function SelectById(int $id)
     {
         $dalCharacter = new \DAL\Character();
     
@@ -34,6 +34,8 @@ class Character
         $character = new \MODEL\Character();
         $character->setName($name);
         $character->setClass($class);
+        $character->setLevel(1);
+        $character->setXp(0.0);
         $character->setIdAttribute($idAttribute);
         $character->setIdAccount($idAccount);
         $character = $dalCharacter->Insert($character);

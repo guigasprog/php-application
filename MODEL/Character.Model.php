@@ -4,6 +4,8 @@
        private ?int $id; 
        private ?string $name;
        private ?string $class; 
+       private ?int $level;
+       private ?float $xp;
        private ?int $idAttribute;
        private ?int $idAccount;
 
@@ -32,6 +34,22 @@
       public function setClass(string $class){
         $this->class = $class; 
       }
+
+      public function getLevel(){
+        return $this->level;       
+     }
+
+     public function setLevel(int $level){
+       $this->level = $level; 
+     }
+
+     public function getXp(){
+      return $this->xp;       
+   }
+
+   public function setXp(float $xp){
+     $this->xp = $xp; 
+   }
 
       public function getIdAttribute(){
         return $this->idAttribute;       
