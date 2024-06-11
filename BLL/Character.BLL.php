@@ -27,11 +27,17 @@ class Character
         if(!empty($characters)) return $characters;
     }
 
-    public static function Insert(\MODEL\Character $character)
+    public static function Insert($name, $class, $idAttribute, $idAccount)
     {
-        $dalCharacter = new \DAL\Character;
+        $dalCharacter = new \DAL\Character();
 
-        return $dalCharacter->Insert($character);;
+        $character = new \MODEL\Character();
+        $character->setName($name);
+        $character->setClass($class);
+        $character->setIdAttribute($idAttribute);
+        $character->setIdAccount($idAccount);
+        $character = $dalCharacter->Insert($character);
+        return !empty($character);
     }
 }
 

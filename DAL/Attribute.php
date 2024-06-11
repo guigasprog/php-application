@@ -30,6 +30,26 @@ class Attribute
       return $attributes;
    }
 
+   public function Insert(\MODEL\Attribute $attribute) 
+   {
+      $sql = "INSERT INTO attribute(strength, dexterity, vitality, intelligence, mind) VALUES('
+      {$attribute->getStrength()}','
+      {$attribute->getDexterity()}','
+      {$attribute->getVitality()}','
+      {$attribute->getIntelligence()}','
+      {$attribute->getMind()}');";
+
+      $lastId = 0;
+
+      $con = Connection::connect();
+      $con->query($sql);
+      $lastId = $con->lastInsertId();
+      echo $lastId;
+      $con = Connection::disconnect();
+
+      return $lastId;
+   }
+
 
 }
 

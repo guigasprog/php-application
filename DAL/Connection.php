@@ -28,5 +28,10 @@
         return self::$cont;  
     }
 
+    public static function lastInsertId (){
+        $stmt = $db->query("SELECT LAST_INSERT_ID()");
+        return $stmt->fetchColumn();  
+    }
+
    }
 ?>

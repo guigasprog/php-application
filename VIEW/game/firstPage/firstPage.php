@@ -5,9 +5,29 @@ use BLL\Account;
 include_once 'C:\xampp\htdocs\php-application\BLL\Character.BLL.php';
 use BLL\Character;
 
+include_once 'C:\xampp\htdocs\php-application\BLL\Attribute.BLL.php';
+use BLL\Attribute;
+
 $account = \BLL\Account::SelectByEmail($_COOKIE['account']);
 
 $characters = \BLL\Character::SelectByIdAccount($account->getId());
+
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create'])) { 
+    if(isset($_POST['class']) && isset($_POST['namePerson'])) {
+
+        if (\BLL\Character::Insert($_POST['namePerson'], 
+        $_POST['class'], 
+        \BLL\Attribute::Insert($_POST['strength'], 
+        $_POST['dexterity'], 
+        $_POST['vitality'], 
+        $_POST['intelligence'], 
+        $_POST['mind']),
+        $account->getId())) {
+            header('Location: http://localhost:80/php-application/VIEW/game/firstPage/firstPage.php');
+        }
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -204,6 +224,30 @@ input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
+input[type=submit] {
+    width: 140px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    transition: 300ms;
+    border: 0;
+}
+
+input[type=submit].primary {
+    border: 3px solid #c155ff;
+    background-color: #c155ff;
+}
+
+input[type=submit].primary:hover {
+    color: #c155ff;
+    background-color: transparent;
+}
+
 </style>
 
 <body>
@@ -234,7 +278,7 @@ input[type=number]::-webkit-inner-spin-button {
                 </div>
             </div>
         <?php } ?>
-        <?php if(!sizeof($characters) == 5) { ?>
+        <?php if(sizeof($characters) < 5) { ?>
             <div class="cardPersonagem" onclick="openDialog('1')">
                 <div class="data">
                     <h1>
@@ -242,7 +286,8 @@ input[type=number]::-webkit-inner-spin-button {
                     </h1>
                 </div>
             </div>
-        <?php }} else {?>
+        <?php }
+        } else {?>
             <div class="cardPersonagem" style="margin: 0 auto;" onclick="openDialog('1')">
                 <div class="data">
                     <h1>
@@ -262,7 +307,7 @@ input[type=number]::-webkit-inner-spin-button {
             <div class="col-6">
                 <div class="row">
                     <h5>Nome do Personagem</h5>
-                    <input type="text" id="name" name="namePerson" required>
+                    <input type="text" id="namePerson" name="namePerson" required>
                 </div>
                 <div class="row">
                     <h5>Classe</h5>
@@ -297,29 +342,32 @@ input[type=number]::-webkit-inner-spin-button {
                         </label>
                     </p>
                 </div>
+                <div class="row" style="display: flex; justify-content: center; align-items: end; margin-top: 18%;">
+                    <input type="submit" value="Criar" name="create" class="primary">
+                </div>
             </div>
             <div class="col-6">
                 <div class="row">
                     <h5>Atributos - Selecione a Classe</h5>
                     <p>
                         <p>Força</p>
-                        <input type="number" name="strength" id="strength">
+                        <input type="number" name="strength" id="strength" readonly>
                     </p>
                     <p>
                         <p>Destreza</p>
-                        <input type="number" name="dexterity" id="dexterity">
+                        <input type="number" name="dexterity" id="dexterity" readonly>
                     </p>
                     <p>
                         <p>Vitalidade</p>
-                        <input type="number" name="vitality" id="vitality">
+                        <input type="number" name="vitality" id="vitality" readonly>
                     </p>
                     <p>
                         <p>Inteligência</p>
-                        <input type="number" name="intelligence" id="intelligence">
+                        <input type="number" name="intelligence" id="intelligence" readonly>
                     </p>
                     <p>
                         <p>Fé</p>
-                        <input type="number" name="mind" id="mind">
+                        <input type="number" name="mind" id="mind" readonly>
                     </p>
                 </div>
             </div>

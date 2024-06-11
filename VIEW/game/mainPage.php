@@ -14,7 +14,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) { 
     if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['username'])) {
-        $account = new \MODEL\Account();
         \BLL\Account::register($_POST['username'], $_POST['email'], $_POST['password']);
         if (\BLL\Account::login($_POST['email'], $_POST['password'])) {
             header('Location: http://localhost:80/php-application/VIEW/game/firstPage/firstPage.php');

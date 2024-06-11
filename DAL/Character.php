@@ -69,14 +69,10 @@ class Character
     }
 
    public function Insert(\MODEL\Character $character){
-      $sql = "INSERT INTO autor(name, class, idAttribute, idAccount) VALUES('
-      {$character->getName()}','
-      {$character->getClass()}','
-      {$character->getIdAttribute()}','
-      {$character->getIdAccount()}');";
+      $sql = "INSERT INTO characters(name, class, idAttribute, idAccount) VALUES('{$character->getName()}','{$character->getClass()}','{$character->getIdAttribute()}','{$character->getIdAccount()}');";
 
       $con = Connection::connect();
-      $character = $con->query($sql);
+      $con->query($sql);
       $con = Connection::disconnect();
 
       return $character;

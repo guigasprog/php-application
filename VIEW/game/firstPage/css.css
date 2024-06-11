@@ -4,4 +4,7 @@
 
 input[type=number] {
     color: #ffffff;
+    display: flex; 
+    justify-content: end; 
+    align-items: end;
 }
