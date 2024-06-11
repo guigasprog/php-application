@@ -175,6 +175,34 @@ main {
     overflow: hidden;
 }
 
+#funcoes {
+    position: absolute;
+    top: 10vh;
+    right: 2%;
+    width: 240px;
+    height: 270px;
+    background-color: #1d1d1dec;
+    z-index: -1;
+    opacity: 0;
+    transition: 300ms;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#confirmacao {
+    position: absolute;
+    top: 30vh;
+    left: 35vw;
+    width: 30vw;
+    height: 40vh;
+    background-color: #1d1d1dec;
+    z-index: -1;
+    opacity: 0;
+    transition: 300ms;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
 .close {
     position: absolute;
     top: 2%;
@@ -236,6 +264,7 @@ input[type=submit] {
     font-weight: 600;
     transition: 300ms;
     border: 0;
+    font-family: "Space Grotesk", sans-serif;
 }
 
 input[type=submit].primary {
@@ -248,15 +277,66 @@ input[type=submit].primary:hover {
     background-color: transparent;
 }
 
+button {
+    width: 140px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    transition: 300ms;
+    border: 0;
+}
+
+button.secondary {
+    width: 60px;
+    border: 3px solid #ffffff;
+    background-color: #ffffff;
+    color: #111111;
+}
+
+button.secondary:hover {
+    color: #ffffff;
+    background-color: transparent;
+}
+
+button.secondary h6 {
+    color: #111111;
+}
+
+button.secondary:hover h6 {
+    color: #ffffff;
+}
+
+button.danger {
+    background-color: #e93535;
+}
+
+button.danger:hover {
+    background-color: #fc5d5d;
+}
+
 </style>
 
 <body>
     <div class="starting">
-        <h5 class="welcome">
-            Welcome 
-            <?php echo $account->getUsername();
-            ?>
-        </h5>
+        <div class="esquerda" style="width: 33%; height: 100%; display:flex; justify-content: start; align-items: center;">
+        
+        </div>
+        <div class="meio" style="width: 33%; height: 100%; display:flex; justify-content: center; align-items: center;">
+            <h5 class="welcome">
+                Welcome 
+                <?php echo $account->getUsername();
+                ?>
+            </h5>
+        </div>
+        
+        <div class="direita" style="width: 33%; height: 100%; display:flex; justify-content: end; align-items: center;">
+            <button class="secondary" style="margin-right: 5%" onclick="openFuncoes()"><h6>...</h6></button>
+        </div>
     </div>
     <main>
         <?php 
@@ -374,14 +454,29 @@ input[type=submit].primary:hover {
         </form>
     </modal>
 
+    <modal id="funcoes">
+        <button class="secondary" style="width: 90%; margin: 5%;"><h6>Alterar Username</h6></button>
+        <button onclick="openConfirmacao('1')" class="danger" style="width: 90%; margin: 5%;"><h6>Apagar Conta</h6></button>
+    </modal>
+
+    <modal id="confirmacao" style="text-align: center">
+        <h4>VOCÊ TEM CERTEZA DO QUE DESEJA FAZER?</h4>
+        <h5>Isso vai deletar todos seus personagens!</h5>
+        <div class="opcoes" style="width: 100%; display: flex; gap: 15px">
+            <button onclick="openConfirmacao('2')" class="secondary" style="width: 90%; margin: 5%;"><h6>Não Apagar</h6></button>
+            <button class="danger" style="width: 90%; margin: 5%;"><h6>Apagar</h6></button>
+        </div>
+        
+    </modal>
+
     <script>
 
         function changeRouter(router) {
             document.location.href = router;
         }
 
-        function openDialog(a) {
-            if(a == '1') {
+        function openDialog(aa) {
+            if(aa == '1') {
                 document.getElementById("dialog").style.zIndex = "5000";
                 setTimeout(
                     ()=>document.getElementById("dialog").style.opacity="1", 100
@@ -390,6 +485,36 @@ input[type=submit].primary:hover {
                 document.getElementById("dialog").style.opacity="0";
                 setTimeout(
                     ()=>document.getElementById("dialog").style.zIndex = "-1", 100
+                )
+            }
+        }
+
+        var a = 0;
+        function openFuncoes() {
+            a++;
+            if(a%2 == 1) {
+                document.getElementById("funcoes").style.zIndex = "5000";
+                setTimeout(
+                    ()=>document.getElementById("funcoes").style.opacity="1", 100
+                )
+            } else {
+                document.getElementById("funcoes").style.opacity="0";
+                setTimeout(
+                    ()=>document.getElementById("funcoes").style.zIndex = "-1", 100
+                )
+            }
+        }
+
+        function openConfirmacao(aa) {
+            if(aa == "1") {
+                document.getElementById("confirmacao").style.zIndex = "5000";
+                setTimeout(
+                    ()=>document.getElementById("confirmacao").style.opacity="1", 100
+                )
+            } else {
+                document.getElementById("confirmacao").style.opacity="0";
+                setTimeout(
+                    ()=>document.getElementById("confirmacao").style.zIndex = "-1", 100
                 )
             }
         }

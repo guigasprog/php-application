@@ -76,7 +76,7 @@ body {
 
 aside {
     width: 20%;
-    height: 25%;
+    height: 30%;
     position: absolute;
     background: #11111180;
     top: 15%;
@@ -136,6 +136,7 @@ input[type=submit] {
     font-weight: 600;
     transition: 300ms;
     border: 0;
+    font-family: "Space Grotesk", sans-serif;
 }
 
 input[type=submit].primary {
@@ -167,6 +168,14 @@ button.secondary {
 button.secondary:hover {
     color: #ffffff;
     background-color: transparent;
+}
+
+button.secondary h6 {
+    color: #111111;
+}
+
+button.secondary:hover h6 {
+    color: #ffffff;
 }
 
 .forms {
@@ -209,7 +218,7 @@ button.secondary:hover {
     justify-content: center;
     align-items: center;">
     <br>
-    <button class="secondary" onclick="register()">Registrar-se</button>
+    <button class="secondary" onclick="register()"><h6>Registrar-se</h6></button>
         </aside>
 
         <div class="forms" id="forms">
@@ -227,7 +236,10 @@ button.secondary:hover {
                         <input type="password" name="password">
                     </div>
                     <div class="campo">
-                        <input type="submit" name="login" class="primary" value="Logar"></button>
+                        <input type="submit" name="login" class="primary" value="Logar">
+                    </div>
+                    <div class="row" style="width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 15%;">
+                        <p>Esqueci minha senha</p>
                     </div>
                 </form>
             </main>
@@ -251,7 +263,7 @@ button.secondary:hover {
     justify-content: center;
     align-items: center;">
     <br>
-    <button class="secondary" onclick="login()">Logar-se</button>
+    <button class="secondary" onclick="login()"><h6>Logar-se</h6></button>
         </aside>
 
         <div class="forms" id="forms2">
@@ -273,7 +285,7 @@ button.secondary:hover {
                         <input type="password" name="password">
                     </div>
                     <div class="campo">
-                        <input type="submit" name="register" class="primary" value="Registrar"></button>
+                        <input type="submit" name="register" class="primary" value="Registrar">
                     </div>
                 </form>
             </main>

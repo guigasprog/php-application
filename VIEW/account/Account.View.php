@@ -161,8 +161,19 @@ button.primary {
 }
 
 button.primary:hover {
-    color: #c155ff;
     background-color: transparent;
+}
+
+button.primary:hover h6 {
+    color: #c155ff;
+}
+
+button.danger {
+    background-color: #e93535;
+}
+
+button.danger:hover {
+    background-color: #fc5d5d;
 }
 
 </style>
@@ -198,7 +209,7 @@ button.primary:hover {
         align-items: center;
         flex-direction: column;">
                 <button class="primary" onclick="changeRouter('../main.php')">
-                    Back
+                    <h6>Back</h6>
                 </button>
             </div>
             <h3 style="width: 75%; display: flex;
@@ -211,6 +222,7 @@ button.primary:hover {
                 <th>Username</th>
                 <th>Email</th>
                 <th>Password</th>
+                <th>Funções</th>
             </tr>
 
             <?php $i=0;
@@ -223,6 +235,7 @@ button.primary:hover {
                 <td><?php echo $account->getUsername(); ?></td>
                 <td><?php echo $account->getEmail(); ?></td>
                 <td><?php echo $account->getPassword(); ?></td>
+                <td><button class="danger"><h6>Banir</h6></button></td>
             </tr>
             <?php } ?>
 

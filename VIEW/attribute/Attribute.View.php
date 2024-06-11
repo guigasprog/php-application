@@ -161,8 +161,11 @@ button.primary {
 }
 
 button.primary:hover {
-    color: #c155ff;
     background-color: transparent;
+}
+
+button.primary:hover h6 {
+    color: #c155ff;
 }
 
 </style>
@@ -198,7 +201,7 @@ button.primary:hover {
         align-items: center;
         flex-direction: column;">
                 <button class="primary" onclick="changeRouter('../main.php')">
-                    Back
+                    <h6>Back</h6>
                 </button>
             </div>
             <h3 style="width: 75%; display: flex;
