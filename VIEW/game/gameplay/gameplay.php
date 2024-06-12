@@ -61,7 +61,8 @@ body {
 
 .background img {
     width: 100%;
-    filter: blur(2px) brightness(80%);
+    margin-top: -7%;
+    filter: blur(2px) brightness(85%);
 }
 
 #informacoes {
@@ -70,9 +71,10 @@ body {
     left: 20vw;
     width: 60vw;
     height: 70vh;
-    background-color: #1d1d1dec;
+    background-color: #1d1d1de1;
     z-index: 5000;
     border-radius: 10px;
+    border: 2px solid #141414;
     overflow: hidden;
 }
 
@@ -80,7 +82,7 @@ body {
 
 <body>
     <div class="background">
-        <img src="../imgs/backgroundclass/<?php echo $character->getClass(); ?>.png">
+        <img src="../imgs/background-game.gif">
     </div>
     <modal id="informacoes">
 

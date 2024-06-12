@@ -6,6 +6,9 @@
        private ?string $class; 
        private ?int $level;
        private ?float $xp;
+       private ?float $xp_necessario;
+       private ?int $vida;
+       private ?int $vida_atual;
        private ?int $idAttribute;
        private ?int $idAccount;
 
@@ -50,6 +53,30 @@
    public function setXp(float $xp){
      $this->xp = $xp; 
    }
+
+   public function getXpNecessario(){
+    return $this->xp_necessario;       
+ }
+
+ public function setXpNecessario(float $xp_necessario){
+   $this->xp_necessario = $xp_necessario; 
+ }
+
+ public function getVidaAtual(){
+  return $this->vida_atual;       
+}
+
+public function setVidaAtual(int $vida_atual){
+ $this->vida_atual = $vida_atual; 
+}
+
+ public function getVida(){
+  return $this->vida;       
+}
+
+public function setVida(int $vida){
+ $this->vida = $vida; 
+}
 
       public function getIdAttribute(){
         return $this->idAttribute;       

@@ -29,6 +29,7 @@ class Attribute
 
         $attribute = new \MODEL\Attribute();
 
+        $attribute->setPontos(0);
         $attribute->setStrength($forca);
         $attribute->setDexterity($destreza);
         $attribute->setVitality($vitalidade);

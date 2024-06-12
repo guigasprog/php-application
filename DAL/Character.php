@@ -22,6 +22,9 @@ class Character
          $character->setClass($row['class']);
          $character->setLevel($row['level']);
          $character->setXp($row['xp']);
+         $character->setXpNecessario($row['xp_necessario']);
+         $character->setVida($row['vida']);
+         $character->setVidaAtual($row['vida_atual']);
          $character->setIdAttribute($row['idAttribute']);
          $character->setIdAccount($row['idAccount']);
 
@@ -46,6 +49,9 @@ class Character
         $character->setClass($row['class']);
         $character->setLevel($row['level']);
         $character->setXp($row['xp']);
+        $character->setXpNecessario($row['xp_necessario']);
+        $character->setVida($row['vida']);
+        $character->setVidaAtual($row['vida_atual']);
         $character->setIdAttribute($row['idAttribute']);
         $character->setIdAccount($row['idAccount']);
 
@@ -66,6 +72,9 @@ class Character
          $character->setClass($row['class']);
          $character->setLevel($row['level']);
          $character->setXp($row['xp']);
+         $character->setXpNecessario($row['xp_necessario']);
+         $character->setVida($row['vida']);
+         $character->setVidaAtual($row['vida_atual']);
          $character->setIdAttribute($row['idAttribute']);
          $character->setIdAccount($row['idAccount']);
 
@@ -75,13 +84,30 @@ class Character
     }
 
    public function Insert(\MODEL\Character $character){
-      $sql = "INSERT INTO characters(name, class, level, xp, idAttribute, idAccount) VALUES('{$character->getName()}','{$character->getClass()}','{$character->getLevel()}','{$character->getXp()}','{$character->getIdAttribute()}','{$character->getIdAccount()}');";
+      $sql = "INSERT INTO characters(name, class, level, xp, xp_necessario, vida, vida_atual, idAttribute, idAccount) VALUES('{$character->getName()}','{$character->getClass()}','{$character->getLevel()}','{$character->getXp()}','{$character->getXpNecessario()}','{$character->getVida()}','{$character->getVidaAtual()}','{$character->getIdAttribute()}','{$character->getIdAccount()}');";
 
       $con = Connection::connect();
       $con->query($sql);
       $con = Connection::disconnect();
 
       return $character;
+   }
+
+   public function Delete($id){
+      
+      $character = Character::SelectById($id);
+
+      $sql = "delete from attribute WHERE id = '{$character->getIdAttribute()}';";
+      $con = Connection::connect();
+      $query = $con->query($sql);
+      $con = Connection::disconnect();
+
+      $sql = "delete from characters WHERE id = '{$character->getId()}';";
+      $con = Connection::connect();
+      $query = $con->query($sql);
+      $con = Connection::disconnect();
+
+      return $query;
    }
 
 }

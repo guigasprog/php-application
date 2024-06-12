@@ -2,6 +2,7 @@
   namespace MODEL; 
   class Attribute {
        private ?int $id; 
+       private ?int $pontos;
        private ?int $strength;
        private ?int $dexterity; 
        private ?int $vitality; 
@@ -17,6 +18,14 @@
        public function setId(int $id){
           $this->id = $id;     
        }
+
+       public function getPontos(){
+        return $this->pontos; 
+    }
+
+    public function setPontos(int $pontos){
+       $this->pontos = $pontos;     
+    }
 
        public function getStrength(){
           return $this->strength;       

@@ -1,11 +1,11 @@
 <?php 
-include_once 'C:\xampp\htdocs\php-application\BLL\Account.BLL.php';
+include_once '../../../BLL/Account.BLL.php';
 use BLL\Account;
 
-include_once 'C:\xampp\htdocs\php-application\BLL\Character.BLL.php';
+include_once '../../../BLL/Character.BLL.php';
 use BLL\Character;
 
-include_once 'C:\xampp\htdocs\php-application\BLL\Attribute.BLL.php';
+include_once '../../../BLL/Attribute.BLL.php';
 use BLL\Attribute;
 
 $account = \BLL\Account::SelectByEmail($_COOKIE['account']);
@@ -66,7 +66,7 @@ body {
 
 .starting {
     width: 100%;
-    height: 10%;
+    height: 13%;
     background-color: transparent;
     display: flex;
     justify-content: center;
@@ -104,7 +104,7 @@ body {
 
 main {
     width: 100%;
-    height: 90%;
+    height: 87%;
     background-color: #111111;
     animation: startingMenu 3s forwards normal;
     display: flex;
@@ -124,13 +124,26 @@ main {
     z-index: 0;
     position: relative;
     filter: grayscale(1);
-    cursor: pointer;
+    cursor: default;
 }
 
 .cardPersonagem:hover {
     background-color: #414141;
     scale: 1.02;
     filter: grayscale(0);
+}
+
+.icon {
+    overflow: hidden;
+}
+
+.icon img {
+    transition: 300ms;
+    cursor: pointer;
+}
+
+.icon:hover img {
+    scale: 1.2;
 }
 
 .data {
@@ -142,6 +155,7 @@ main {
     height: 100%;
     transform: skew(15deg);
 }
+
 .background-card {
     width: 100%; height: 100%;
     justify-content: center;
@@ -159,6 +173,24 @@ main {
     align-items: center;
     display: flex;
     position: absolute;
+    z-index: 2;
+}
+
+.funcoesCharacters {
+    width: 115%;
+    height: 8%;
+    background: #141414;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    top: 45%;
+    z-index: 1;
+    transition: 500ms;
+}
+
+.cardPersonagem:hover .data .funcoesCharacters {
+    top: 54%;
 }
 
 #dialog {
@@ -180,7 +212,7 @@ main {
     top: 10vh;
     right: 2%;
     width: 240px;
-    height: 270px;
+    height: auto;
     background-color: #1d1d1dec;
     z-index: -1;
     opacity: 0;
@@ -335,6 +367,15 @@ button.secondary:hover h6 {
     color: #ffffff;
 }
 
+button.secondary img {
+    filter: invert(0);
+    transition: 300ms;
+}
+
+button.secondary:hover img {
+    filter: invert(1);
+}
+
 button.danger {
     background-color: #e93535;
 }
@@ -359,16 +400,19 @@ button.danger:hover {
         </div>
         
         <div class="direita" style="width: 33%; height: 100%; display:flex; justify-content: end; align-items: center;">
-            <button class="secondary" style="margin-right: 5%" onclick="openFuncoes()"><h6>...</h6></button>
+            <button class="secondary" style="margin-right: 5%" onclick="openFuncoes()">
+                <img src="../imgs/more.png" width="32" height="32">
+            </button>
         </div>
     </div>
+
     <main>
         <?php 
             if(!empty($characters)) {
                 foreach($characters as $character) {
             
         ?>
-            <div class="cardPersonagem" onclick="selectedCharacter(<?php echo $character->getId();?>)">
+            <div class="cardPersonagem">
                 <div class="data">
                     <div class="background-card">
                         <img src="../imgs/class/<?php echo $character->getClass(); ?>.jpeg">
@@ -377,6 +421,26 @@ button.danger:hover {
                         <h6 style="z-index: 1">
                             <?php echo $character->getName() ?> - Lvl.<?php echo $character->getLevel(); ?>
                         </h6>
+                    </div>
+
+                    <div class="funcoesCharacters">
+                        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                            <div class="icon" style="width: 64px; height: 100%;
+                            display: flex; justify-content: center; align-items: center;">
+                                <img src="../imgs/info.png" width="43" height="43"
+                                onclick="infoCharacter(<?php echo $character->getId();?>)">
+                            </div>
+                            <div class="icon" style="width: 64px; height: 100%;
+                            display: flex; justify-content: center; align-items: center;">
+                                <img src="../imgs/play-button.png" width="32" height="32"
+                            onclick="selectedCharacter(<?php echo $character->getId();?>)">
+                            </div>
+                            <div class="icon" style="width: 64px; height: 100%;
+                            display: flex; justify-content: center; align-items: center;">
+                                <img src="../imgs/trash.png" width="32" height="32"
+                                onclick="removerCharacter(<?php echo $character->getId();?>)">
+                            </div>
+                        </div>
                     </div>
                     
                 </div>
@@ -392,7 +456,7 @@ button.danger:hover {
             </div>
         <?php }
         } else {?>
-            <div class="cardPersonagem" style="margin: 0 auto;" onclick="openDialog('1')">
+            <div class="cardPersonagem" style="margin: 0 auto;" onclick="openDialog(true)">
                 <div class="data">
                     <h1>
                         +
@@ -403,7 +467,7 @@ button.danger:hover {
     </main>
 
     <modal id="dialog">
-        <div class="close" onclick="openDialog('2')">
+        <div class="close" onclick="openDialog(false)">
             <img src="../imgs/remove.png" width="32" height="32">
         </div>
         <div class="header-dialog"><h3>Criação de Personagem</h3></div>
@@ -480,7 +544,8 @@ button.danger:hover {
 
     <modal id="funcoes">
         <button onclick="openAlterar(true)" class="secondary" style="width: 90%; margin: 5%;"><h6>Alterar Username</h6></button>
-        <button onclick="openConfirmacao('1')" class="danger" style="width: 90%; margin: 5%;"><h6>Apagar Conta</h6></button>
+        <button onclick="openConfirmacao(true)" class="danger" style="width: 90%; margin: 5%;"><h6>Apagar Conta</h6></button>
+        <button onclick="logout()" class="secondary" style="width: 90%; margin: 5%;"><h6>Logout</h6></button>
     </modal>
 
     <modal id="alterarNome" style="text-align: center">
@@ -488,7 +553,7 @@ button.danger:hover {
             <div class="row">
                 <h5>Nome do Conta</h5>
                 <h6>Isso não afeta nada em seu jogo</h6>
-                <input type="text" style="width: 80%" id="username" name="username">
+                <input type="text" style="width: 80%" id="username" name="username" value="<?php echo $account->getUsername(); ?>">
             </div>
             <div class="opcoes" style="width: 100%; display: flex; gap: 15px">
                 <button onclick="openAlterar(false)" class="secondary" style="width: 50%; margin: 5%;"><h6>Voltar</h6></button>
@@ -501,7 +566,7 @@ button.danger:hover {
         <h4>VOCÊ TEM CERTEZA DO QUE DESEJA FAZER?</h4>
         <h5>Isso vai deletar todos seus personagens!</h5>
         <div class="opcoes" style="width: 100%; display: flex; gap: 15px">
-            <button onclick="openConfirmacao('2')" class="secondary" style="width: 90%; margin: 5%;"><h6>Não Apagar</h6></button>
+            <button onclick="openConfirmacao(false)" class="secondary" style="width: 90%; margin: 5%;"><h6>Voltar</h6></button>
             <button class="danger" style="width: 90%; margin: 5%;" onclick="removerAccount( <?php echo $account->getId(); ?> )">
                 <h6>Apagar</h6>
             </button>
@@ -514,8 +579,20 @@ button.danger:hover {
             document.location.href = router;
         }
 
+        function logout() {
+            location.href = '../Account/logout.php';
+        }
+
         function selectedCharacter(idCharacter) {
-            location.href = '../infoCharacter/infoCharacter.php?id=' + idCharacter;
+            location.href = '../gameplay/gameplay.php?id=' + idCharacter;
+        }
+
+        function infoCharacter(idCharacter) {
+            location.href = '../Character/infoCharacter.php?id=' + idCharacter;
+        }
+
+        function removerCharacter(id) {
+            location.href = '../Character/removerCharacter.php?id=' + id;
         }
 
         function alterarUsername(idCharacter) {
@@ -527,8 +604,8 @@ button.danger:hover {
             location.href = '../Account/removerAccount.php?id=' + id;
         }
 
-        function openDialog(aa) {
-            if(aa == '1') {
+        function openDialog(abrir) {
+            if(abrir) {
                 document.getElementById("dialog").style.zIndex = "5000";
                 setTimeout(
                     ()=>document.getElementById("dialog").style.opacity="1", 100
@@ -540,11 +617,10 @@ button.danger:hover {
                 )
             }
         }
-
         var a = 0;
         function openFuncoes() {
             a++;
-            if(a%2 == 1) {
+            if(a % 2 == 1) {
                 document.getElementById("funcoes").style.zIndex = "5000";
                 setTimeout(
                     ()=>document.getElementById("funcoes").style.opacity="1", 100
@@ -557,8 +633,8 @@ button.danger:hover {
             }
         }
 
-        function openConfirmacao(aa) {
-            if(aa == "1") {
+        function openConfirmacao(abrir) {
+            if(abrir) {
                 document.getElementById("confirmacao").style.zIndex = "5000";
                 setTimeout(
                     ()=>document.getElementById("confirmacao").style.opacity="1", 100

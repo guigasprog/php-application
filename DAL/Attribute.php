@@ -18,6 +18,7 @@ class Attribute
          $attribute = new \MODEL\Attribute();
 
          $attribute->setId($row['id']);
+         $attribute->setId($row['pontos']);
          $attribute->setStrength($row['strength']);
          $attribute->setDexterity($row['dexterity']);
          $attribute->setVitality($row['vitality']);
@@ -42,6 +43,7 @@ class Attribute
         $attribute = new \MODEL\Attribute();
 
         $attribute->setId($row['id']);
+        $attribute->setId($row['pontos']);
         $attribute->setStrength($row['strength']);
         $attribute->setDexterity($row['dexterity']);
         $attribute->setVitality($row['vitality']);
@@ -53,12 +55,7 @@ class Attribute
 
    public function Insert(\MODEL\Attribute $attribute) 
    {
-      $sql = "INSERT INTO attribute(strength, dexterity, vitality, intelligence, mind) VALUES('
-      {$attribute->getStrength()}','
-      {$attribute->getDexterity()}','
-      {$attribute->getVitality()}','
-      {$attribute->getIntelligence()}','
-      {$attribute->getMind()}');";
+      $sql = "INSERT INTO attribute(pontos, strength, dexterity, vitality, intelligence, mind) VALUES('{$attribute->getPontos()}','{$attribute->getStrength()}','{$attribute->getDexterity()}','{$attribute->getVitality()}','{$attribute->getIntelligence()}','{$attribute->getMind()}');";
 
       $lastId = 0;
 

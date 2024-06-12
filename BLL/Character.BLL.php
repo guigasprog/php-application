@@ -36,11 +36,25 @@ class Character
         $character->setClass($class);
         $character->setLevel(1);
         $character->setXp(0.0);
+        $character->setXpNecessario(100.0);
+
+        $attribute = \BLL\Attribute::SelectById($idAttribute);
+
+        $character->setVida(($attribute->getVitality()*5)+100);
+        $character->setVidaAtual($character->getVida());
         $character->setIdAttribute($idAttribute);
         $character->setIdAccount($idAccount);
         $character = $dalCharacter->Insert($character);
         return !empty($character);
     }
+
+    public static function Delete(int $idAccount)
+    {
+        $dalCharacter = new \DAL\Character();
+        
+        return $dalCharacter->Delete($idAccount);
+    }
+
 }
 
 ?>
