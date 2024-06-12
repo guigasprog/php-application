@@ -27,17 +27,21 @@ class Account
         return $dalAccount->Delete($idAccount);
     }
 
-    public static function UpdateUsername(string $username)
+    public static function UpdateUsername(int $id, string $username)
     {
         $dalAccount = new \DAL\Account();
     
-        return $dalAccount->Delete($idAccount);
+        return $dalAccount->UpdateUsername($id, $username);
     }
 
     public static function register(string $username, string $email, string $senha){
         $dalAccount = new \DAL\Account();
-        $account = $dalAccount->Insert($username, $email, $senha);
-        return $account;
+        $account = $dalAccount->SelectByEmail($email);
+        if(empty($account)) {
+            $account = $dalAccount->Insert($username, $email, md5($senha));
+            return $account;
+        }
+        
     }
 
     public static function login(string $email, string $senha){
@@ -48,7 +52,7 @@ class Account
             echo "Usuario não encontrado";
         }
         
-        if($account->getPassword() == $senha){
+        if($account->getPassword() == md5($senha)){
             setcookie("account", $account->getEmail(), time()+(86400 * 30), "/", "", 0);
             return true;
         }

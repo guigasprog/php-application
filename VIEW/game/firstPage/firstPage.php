@@ -28,15 +28,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create'])) {
     }
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) { 
-    if(isset($_POST['namePerson'])) {
-
-        if (\BLL\Account::UpdateUsername($_POST['namePerson'])) {
-            header('Location: http://localhost:80/php-application/VIEW/game/firstPage/firstPage.php');
-        }
-    }
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -200,10 +191,10 @@ main {
 
 #confirmacao {
     position: absolute;
-    top: 30vh;
-    left: 35vw;
-    width: 30vw;
-    height: 40vh;
+    top: 27vh;
+    left: 33vw;
+    width: 33vw;
+    height: 45vh;
     background-color: #1d1d1dec;
     z-index: -1;
     opacity: 0;
@@ -214,10 +205,10 @@ main {
 
 #alterarNome {
     position: absolute;
-    top: 33vh;
+    top: 30vh;
     left: 33vw;
     width: 33vw;
-    height: 33vh;
+    height: 40vh;
     background-color: #1d1d1dec;
     z-index: -1;
     opacity: 0;
@@ -312,6 +303,16 @@ button {
     font-weight: 600;
     transition: 300ms;
     border: 0;
+}
+
+button.primary {
+    border: 3px solid #c155ff;
+    background-color: #c155ff;
+}
+
+button.primary:hover {
+    color: #c155ff;
+    background-color: transparent;
 }
 
 button.secondary {
@@ -483,17 +484,17 @@ button.danger:hover {
     </modal>
 
     <modal id="alterarNome" style="text-align: center">
-        <form class="content" style="flex-direction: column" method="POST">
+        <div class="content" style="flex-direction: column">
             <div class="row">
                 <h5>Nome do Conta</h5>
                 <h6>Isso não afeta nada em seu jogo</h6>
-                <input type="text" style="width: 80%" id="namePerson" name="namePerson">
+                <input type="text" style="width: 80%" id="username" name="username">
             </div>
             <div class="opcoes" style="width: 100%; display: flex; gap: 15px">
                 <button onclick="openAlterar(false)" class="secondary" style="width: 50%; margin: 5%;"><h6>Voltar</h6></button>
-                <input type="submit" class="primary" name="update" style="width: 50%; margin: 5%;" value="Trocar">
+                <button onclick="alterarUsername( <?php echo $account->getId(); ?> )" class="primary" style="width: 50%; margin: 5%;"><h6>Trocar</h6></button>
             </div>
-        </form>
+        </div>
     </modal>
 
     <modal id="confirmacao" style="text-align: center">
@@ -517,8 +518,13 @@ button.danger:hover {
             location.href = '../infoCharacter/infoCharacter.php?id=' + idCharacter;
         }
 
+        function alterarUsername(idCharacter) {
+            location.href = '../Account/alterarAccount.php?id=' + idCharacter 
+            + '&username=' + document.getElementById("username").value;
+        }
+
         function removerAccount(id) {
-            location.href = '../removeAccount/removerAccount.php?id=' + id;
+            location.href = '../Account/removerAccount.php?id=' + id;
         }
 
         function openDialog(aa) {
