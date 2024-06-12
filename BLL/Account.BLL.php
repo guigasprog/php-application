@@ -31,7 +31,7 @@ class Account
     {
         $dalAccount = new \DAL\Account();
     
-        return $dalAccount->Delete($idAccount);
+        return $dalAccount->UpdateUsername($username);
     }
 
     public static function register(string $username, string $email, string $senha){
