@@ -57,16 +57,16 @@ class Account
       return $account;
    }
 
-   public function UpdateUsername($username)
+   public function UpdateUsername($id, $username)
    {
-      $sql = "INSERT INTO account(username, email, password) VALUES('{$name}','{$email}','{$senha}');";
+      $sql = "UPDATE account SET id = '{$id}', username = '{$username}';";
       
-      $account = new \MODEL\Account();
 
       $con = Connection::connect();
       $account = $con->query($sql);
       $con = Connection::disconnect();
-      return $account;
+
+      return true;
    }
 
    public function Delete($idAccount){
