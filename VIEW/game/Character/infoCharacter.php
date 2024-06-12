@@ -172,6 +172,15 @@ button.primary:hover h6 {
   border-radius: 100px;
 }
 
+.atributos {
+    width: 85%;
+    height: 65%;
+    position: absolute;
+    top: 35%;
+    left: 15%;
+    background-color: green;
+}
+
 </style>
 
 <body>
@@ -205,6 +214,9 @@ button.primary:hover h6 {
                 <h6>Xp: <?php echo $character->getXp(); ?> / <?php echo $character->getXpNecessario();?></h6>
                 <div class="progress-bar-xp"></div>
             </div>
+        </div>
+        <div class="atributos">
+
         </div>
         
         
