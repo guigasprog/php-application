@@ -9,7 +9,7 @@
     $id = $_GET['id'];
  
     $character =  \BLL\Character::SelectById($id);
-    $attribute = \BLL\Attribute::SelectById($character->getId());
+    $attribute = \BLL\Attribute::SelectById($character->getIdAttribute());
     
 
 ?>
@@ -178,7 +178,20 @@ button.primary:hover h6 {
     position: absolute;
     top: 35%;
     left: 15%;
-    background-color: green;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.atributo {
+    width: 25%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 </style>
@@ -216,7 +229,12 @@ button.primary:hover h6 {
             </div>
         </div>
         <div class="atributos">
-
+            <div class="atributo"><h6>Força: <?php echo $attribute->getStrength(); ?></h6></div>
+            <div class="atributo"><h6>Destreza: <?php echo $attribute->getDexterity(); ?></h6></div>
+            <div class="atributo"><h6>Vitalidade: <?php echo $attribute->getVitality(); ?></h6></div>
+            <div class="atributo"><h6>Inteligência: <?php echo $attribute->getIntelligence(); ?></h6></div>
+            <div class="atributo"><h6>Fé: <?php echo $attribute->getMind(); ?></h6></div>
+            <div class="atributo"><h6>Pontos: <?php echo $attribute->getPontos(); ?></h6></div>
         </div>
         
         

@@ -18,7 +18,7 @@ class Attribute
          $attribute = new \MODEL\Attribute();
 
          $attribute->setId($row['id']);
-         $attribute->setId($row['pontos']);
+         $attribute->setPontos($row['pontos']);
          $attribute->setStrength($row['strength']);
          $attribute->setDexterity($row['dexterity']);
          $attribute->setVitality($row['vitality']);
@@ -43,7 +43,7 @@ class Attribute
         $attribute = new \MODEL\Attribute();
 
         $attribute->setId($row['id']);
-        $attribute->setId($row['pontos']);
+        $attribute->setPontos($row['pontos']);
         $attribute->setStrength($row['strength']);
         $attribute->setDexterity($row['dexterity']);
         $attribute->setVitality($row['vitality']);

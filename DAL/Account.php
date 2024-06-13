@@ -29,6 +29,25 @@ class Account
       return $accounts;
    }
 
+   public function SelectById($id)
+   {
+      $sql = "Select * from account Where id=?;";
+      $con = Connection::connect();
+      $query = $con->prepare($sql);
+      $query->execute(array($id));
+      $row = $query->fetch(\PDO::FETCH_ASSOC);
+      $con = Connection::disconnect();
+
+      $account = new \MODEL\Account();
+
+      $account->setId($row['id']);
+      $account->setUsername($row['username']);
+      $account->setEmail($row['email']);
+      $account->setPassword($row['password']);
+
+      return $account;
+   }
+
    public function SelectByEmail($email)
    {
       $sql = "Select * from account Where email='{$email}';";

@@ -13,6 +13,13 @@ class Account
         return $dalAccount->Select();
     }
 
+    public static function SelectById(int $id)
+    {
+        $dalAccount = new \DAL\Account();
+    
+        return $dalAccount->SelectById($id);
+    }
+
     public static function SelectByEmail(string $email)
     {
         $dalAccount = new \DAL\Account();

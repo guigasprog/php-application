@@ -4,12 +4,17 @@
 
     include_once '../../../BLL/Attribute.BLL.php'; 
     use BLL\Attribute;
+
+    include_once '../../../BLL/Account.BLL.php'; 
+    use BLL\Account;
     
 
     $id = $_GET['id'];
- 
+
     $character =  \BLL\Character::SelectById($id);
-    $attribute = \BLL\Attribute::SelectById($character->getId());
+    $account =  \BLL\Account::SelectById($character->getIdAccount());
+    if($account->getEmail() != $_COOKIE['account']) header('Location: http://localhost:80/php-application/VIEW/game/firstPage/firstPage.php');
+    $attribute = \BLL\Attribute::SelectById($character->getIdAttribute());
     
 
 ?>
@@ -85,7 +90,22 @@ body {
         <img src="../imgs/background-game.gif">
     </div>
     <modal id="informacoes">
-
+        <header>
+            <div class="esquerda" style="width: 20%; height: 100%;
+            display: flex; justify-content: center; align-items: center;">
+                <button onclick="voltar()" class="primary">
+                    <h6>Voltar</h6>
+                </button>
+            </div>
+            <div class="meio" style="width: 60%; height: 100%;
+            display: flex; justify-content: center; align-items: center;">
+                <h5><?php echo $character->getName(); ?> - <?php echo $character->getClass(); ?></h5>
+            </div>
+            <div class="direita" style="width: 20%; height: 100%;
+            display: flex; justify-content: center; align-items: center;">
+                <h5>Lvl:<?php echo $character->getLevel(); ?></h5>
+            </div>
+        </header>
     </modal>
 </body>
 

@@ -1,5 +1,6 @@
 .a {
     background-color: #fc5d5d;
+    flex-wrap: wrap;
 }
 
 input[type=number] {

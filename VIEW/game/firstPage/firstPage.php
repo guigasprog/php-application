@@ -9,6 +9,7 @@ include_once '../../../BLL/Attribute.BLL.php';
 use BLL\Attribute;
 
 $account = \BLL\Account::SelectByEmail($_COOKIE['account']);
+if(empty($account)) header('Location: http://localhost:80/php-application/VIEW/game/mainPage.php');
 
 $characters = \BLL\Character::SelectByIdAccount($account->getId());
 
