@@ -44,7 +44,7 @@ class Character
         $con = Connection::disconnect();
 
         $character = new \MODEL\Character();
-        $character->setId($row['id']);
+        $character->setId($id);
         $character->setName($row['name']);
         $character->setClass($row['class']);
         $character->setLevel($row['level']);
@@ -91,6 +91,18 @@ class Character
       $con = Connection::disconnect();
 
       return $character;
+   }
+
+   public function Update($id, $level, $xp, $xpNecessario, $vida, $vidaAtual)
+   {
+      $sql = "UPDATE characters SET level = '{$level}', xp = '{$xp}', xp_necessario = '{$xpNecessario}', vida = '{$vida}', vida_atual = '{$vidaAtual}' WHERE id = '{$id}';";
+      
+
+      $con = Connection::connect();
+      $character = $con->query($sql);
+      $con = Connection::disconnect();
+
+      return true;
    }
 
    public function Delete($id){

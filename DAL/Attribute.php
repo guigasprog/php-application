@@ -68,6 +68,18 @@ class Attribute
       return $lastId;
    }
 
+   public function Update($id, $pontos, $forca, $destreza, $vitalidade, $inteligencia, $mente)
+   {
+      $sql = "UPDATE attribute SET pontos = '{$pontos}', strength = '{$forca}', dexterity = '{$destreza}', vitality = '{$vitalidade}', intelligence = '{$inteligencia}', mind = '{$mente}' WHERE id = '{$id}';";
+      
+
+      $con = Connection::connect();
+      $attribute = $con->query($sql);
+      $con = Connection::disconnect();
+
+      return true;
+   }
+
 
 }
 

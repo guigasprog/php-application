@@ -48,6 +48,12 @@ class Character
         return !empty($character);
     }
 
+    public static function Update(\MODEL\Character $character) {
+        $dalCharacter = new \DAL\Character();
+
+        return $dalCharacter->Update($character->getId(), $character->getLevel(), $character->getXp(), $character->getXpNecessario(), $character->getVida(), $character->getVidaAtual());
+    }
+
     public static function Delete(int $idAccount)
     {
         $dalCharacter = new \DAL\Character();

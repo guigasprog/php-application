@@ -38,6 +38,12 @@ class Attribute
 
         return $dalAttribute->Insert($attribute);
     }
+
+    public static function Update(\MODEL\Attribute $attribute) {
+        $dalAttribute = new \DAL\Attribute();
+
+        return $dalAttribute->Update($attribute->getId(),$attribute->getPontos(),$attribute->getStrength(),$attribute->getDexterity(),$attribute->getVitality(),$attribute->getIntelligence(),$attribute->getMind());
+    }
 }
 
 ?>
