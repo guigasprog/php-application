@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Jun-2024 às 02:07
--- Versão do servidor: 10.4.24-MariaDB
--- versão do PHP: 8.1.6
+-- Generation Time: Jun 13, 2024 at 07:33 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `chaos-trials`
+-- Database: `chaos-trials`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `account`
+-- Table structure for table `account`
 --
 
 CREATE TABLE `account` (
@@ -32,41 +32,44 @@ CREATE TABLE `account` (
   `username` varchar(80) NOT NULL,
   `email` varchar(120) NOT NULL,
   `password` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `account`
+-- Dumping data for table `account`
 --
 
 INSERT INTO `account` (`id`, `username`, `email`, `password`) VALUES
-(6, 'Michael Jackson', '4guigamers@gmail.com', 'c71a3bc6adaef3f2c3e8d55dd9fd7fe0');
+(8, 'GuigaReiDela', '4guigamers@gmail.com', 'c71a3bc6adaef3f2c3e8d55dd9fd7fe0'),
+(9, 'GuigaReiDela', 'uryeljo13@gmail.com', 'c71a3bc6adaef3f2c3e8d55dd9fd7fe0');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `attribute`
+-- Table structure for table `attribute`
 --
 
 CREATE TABLE `attribute` (
   `id` int(11) NOT NULL,
+  `pontos` int(11) NOT NULL,
   `strength` int(11) NOT NULL,
   `dexterity` int(11) NOT NULL,
   `vitality` int(11) NOT NULL,
   `intelligence` int(11) NOT NULL,
   `mind` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `attribute`
+-- Dumping data for table `attribute`
 --
 
-INSERT INTO `attribute` (`id`, `strength`, `dexterity`, `vitality`, `intelligence`, `mind`) VALUES
-(9, 1, 4, -3, 4, 4);
+INSERT INTO `attribute` (`id`, `pontos`, `strength`, `dexterity`, `vitality`, `intelligence`, `mind`) VALUES
+(25, 0, 1, 4, -3, 4, 4),
+(38, 2, 9, 4, 1, 39, 38);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `characters`
+-- Table structure for table `characters`
 --
 
 CREATE TABLE `characters` (
@@ -76,34 +79,38 @@ CREATE TABLE `characters` (
   `level` int(11) NOT NULL,
   `xp` decimal(10,2) NOT NULL,
   `idAccount` int(11) NOT NULL,
-  `idAttribute` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `idAttribute` int(11) NOT NULL,
+  `xp_necessario` decimal(10,2) NOT NULL,
+  `vida` int(11) NOT NULL,
+  `vida_atual` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `characters`
+-- Dumping data for table `characters`
 --
 
-INSERT INTO `characters` (`id`, `name`, `class`, `level`, `xp`, `idAccount`, `idAttribute`) VALUES
-(9, 'A', 'Arqueiro', 1, '0.00', 6, 9);
+INSERT INTO `characters` (`id`, `name`, `class`, `level`, `xp`, `idAccount`, `idAttribute`, `xp_necessario`, `vida`, `vida_atual`) VALUES
+(25, 'bARNABE', 'Arqueiro', 1, 0.00, 9, 25, 100.00, 85, 70),
+(38, 'Lola Muscolo o Clerigo', 'Arqueiro', 1, 0.00, 8, 38, 225.00, 105, 45);
 
 --
--- Índices para tabelas despejadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices para tabela `account`
+-- Indexes for table `account`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `attribute`
+-- Indexes for table `attribute`
 --
 ALTER TABLE `attribute`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `characters`
+-- Indexes for table `characters`
 --
 ALTER TABLE `characters`
   ADD PRIMARY KEY (`id`),
@@ -111,33 +118,33 @@ ALTER TABLE `characters`
   ADD KEY `idAccount` (`idAccount`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `account`
+-- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT de tabela `attribute`
+-- AUTO_INCREMENT for table `attribute`
 --
 ALTER TABLE `attribute`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT de tabela `characters`
+-- AUTO_INCREMENT for table `characters`
 --
 ALTER TABLE `characters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- Restrições para despejos de tabelas
+-- Constraints for dumped tables
 --
 
 --
--- Limitadores para a tabela `characters`
+-- Constraints for table `characters`
 --
 ALTER TABLE `characters`
   ADD CONSTRAINT `idAccount` FOREIGN KEY (`idAccount`) REFERENCES `account` (`id`),
