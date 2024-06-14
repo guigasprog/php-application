@@ -61,7 +61,8 @@ class Account
          $account->setEmail($row['email']);
          $account->setPassword($row['password']);
       }
-      return $account;
+      if(!empty($account)) return $account;
+      else header("Location: ../game/mainPage.php");
    }
 
    public function Insert($name, $email, $senha)

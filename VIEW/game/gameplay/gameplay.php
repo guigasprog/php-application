@@ -13,7 +13,7 @@
 
     $character =  \BLL\Character::SelectById($id);
     $account =  \BLL\Account::SelectById($character->getIdAccount());
-    if($account->getEmail() != $_COOKIE['account']) header('Location: http://localhost:80/php-application/VIEW/game/firstPage/firstPage.php');
+    if($account->getEmail() != $_COOKIE['account']) header('Location: ../firstPage/firstPage.php');
     $attribute = \BLL\Attribute::SelectById($character->getIdAttribute());
     
 
@@ -191,22 +191,21 @@ button.primary:hover h6 {
 .value {
     width: 100%;
     height: 100%;
-    background-color: #282828;
+    background-color:black;
+    color:#66cc00;
+    font-size:20px;
     padding: 15px;
     display: flex;
     justify-content: end;
     align-items: start;
     flex-direction: column;
-}
-
-.value h6 {
+    border: none;
     font-family: "VT323", monospace;
-    font-size: 28px;
 }
 
 </style>
 
-<body>
+<body onload="scrollLogToBottom()">
     <div class="background">
         <img src="../imgs/background-game.gif">
     </div>
@@ -248,9 +247,13 @@ button.primary:hover h6 {
             </div>
             <div class="game">
                 <div class="terminal">
-                    <div class="value">
-                        
-                    </div>
+                <textarea id="logTextArea" style="resize: none;" class="value" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" readonly><?php
+                        $historico = preg_split("[;]",$character->getHistorico());
+                        foreach($historico as $value) {
+                            echo $value;
+                            echo "\n";
+                        }?>
+                </textarea>
                 </div>
                 <button onclick="acao(5)" class="primary">
                     <h6>Descansar</h6>
@@ -266,6 +269,12 @@ button.primary:hover h6 {
         function acao(acao) {
             location.href = '../acao/acao.php?id=<?php echo $character->getId(); ?>&acao='+acao;
         }
+
+        function scrollLogToBottom() {
+            logTa = document.getElementById("logTextArea")
+            logTa.scrollTop = logTa.scrollHeight;
+        }
+
     </script>
 </body>
 

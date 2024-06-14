@@ -37,6 +37,7 @@ class Character
         $character->setLevel(1);
         $character->setXp(0.0);
         $character->setXpNecessario(100.0);
+        $character->setHistorico("");
 
         $attribute = \BLL\Attribute::SelectById($idAttribute);
 
@@ -51,7 +52,7 @@ class Character
     public static function Update(\MODEL\Character $character) {
         $dalCharacter = new \DAL\Character();
 
-        return $dalCharacter->Update($character->getId(), $character->getLevel(), $character->getXp(), $character->getXpNecessario(), $character->getVida(), $character->getVidaAtual());
+        return $dalCharacter->Update($character->getId(), $character->getLevel(), $character->getXp(), $character->getXpNecessario(), $character->getVida(), $character->getVidaAtual(), $character->getHistorico());
     }
 
     public static function Delete(int $idAccount)

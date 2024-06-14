@@ -55,7 +55,7 @@ header {
 
 aside {
     width: 20%; 
-    height: 95%; 
+    height: 90%; 
     margin: 1%; 
     background-color: #41414120; 
     border-radius: 10px;
@@ -65,11 +65,11 @@ aside {
 
 main {
     width: 80%;
-    height: 95%;
+    height: 90%;
     margin: 1%;
     border-radius: 10px;
     background-color: #41414110;
-    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .content {
@@ -109,7 +109,7 @@ main {
 
 .conteudo {
     width: 100%; 
-    height: 100%;
+    height: 90%;
     display: flex; 
     flex-direction: row;
     justify-content: center; 

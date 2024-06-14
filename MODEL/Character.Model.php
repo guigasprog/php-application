@@ -11,6 +11,7 @@
        private ?int $vida_atual;
        private ?int $idAttribute;
        private ?int $idAccount;
+       private ?string $historico;
 
        public function __construct() { }
 
@@ -68,6 +69,14 @@
 
 public function setVidaAtual(int $vida_atual){
  $this->vida_atual = $vida_atual; 
+}
+
+public function getHistorico(){
+  return $this->historico;       
+}
+
+public function setHistorico(string $historico){
+ $this->historico = $historico; 
 }
 
  public function getVida(){

@@ -25,6 +25,7 @@ class Character
          $character->setXpNecessario($row['xp_necessario']);
          $character->setVida($row['vida']);
          $character->setVidaAtual($row['vida_atual']);
+         $character->setHistorico($row['historico']);
          $character->setIdAttribute($row['idAttribute']);
          $character->setIdAccount($row['idAccount']);
 
@@ -52,6 +53,7 @@ class Character
         $character->setXpNecessario($row['xp_necessario']);
         $character->setVida($row['vida']);
         $character->setVidaAtual($row['vida_atual']);
+        $character->setHistorico($row['historico']);
         $character->setIdAttribute($row['idAttribute']);
         $character->setIdAccount($row['idAccount']);
 
@@ -75,6 +77,7 @@ class Character
          $character->setXpNecessario($row['xp_necessario']);
          $character->setVida($row['vida']);
          $character->setVidaAtual($row['vida_atual']);
+         $character->setHistorico($row['historico']);
          $character->setIdAttribute($row['idAttribute']);
          $character->setIdAccount($row['idAccount']);
 
@@ -84,7 +87,7 @@ class Character
     }
 
    public function Insert(\MODEL\Character $character){
-      $sql = "INSERT INTO characters(name, class, level, xp, xp_necessario, vida, vida_atual, idAttribute, idAccount) VALUES('{$character->getName()}','{$character->getClass()}','{$character->getLevel()}','{$character->getXp()}','{$character->getXpNecessario()}','{$character->getVida()}','{$character->getVidaAtual()}','{$character->getIdAttribute()}','{$character->getIdAccount()}');";
+      $sql = "INSERT INTO characters(name, class, level, xp, xp_necessario, vida, vida_atual, historico, idAttribute, idAccount) VALUES('{$character->getName()}','{$character->getClass()}','{$character->getLevel()}','{$character->getXp()}','{$character->getXpNecessario()}','{$character->getVida()}','{$character->getVidaAtual()}','{$character->getHistorico()}','{$character->getIdAttribute()}','{$character->getIdAccount()}');";
 
       $con = Connection::connect();
       $con->query($sql);
@@ -93,9 +96,9 @@ class Character
       return $character;
    }
 
-   public function Update($id, $level, $xp, $xpNecessario, $vida, $vidaAtual)
+   public function Update($id, $level, $xp, $xpNecessario, $vida, $vidaAtual, $historico)
    {
-      $sql = "UPDATE characters SET level = '{$level}', xp = '{$xp}', xp_necessario = '{$xpNecessario}', vida = '{$vida}', vida_atual = '{$vidaAtual}' WHERE id = '{$id}';";
+      $sql = "UPDATE characters SET level = '{$level}', historico = '{$historico}' , xp = '{$xp}', xp_necessario = '{$xpNecessario}', vida = '{$vida}', vida_atual = '{$vidaAtual}' WHERE id = '{$id}';";
       
 
       $con = Connection::connect();

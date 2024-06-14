@@ -55,7 +55,7 @@ header {
 
 aside {
     width: 20%; 
-    height: 95%; 
+    height: 90%; 
     margin: 1%; 
     background-color: #41414120; 
     border-radius: 10px;
@@ -65,11 +65,11 @@ aside {
 
 main {
     width: 80%;
-    height: 95%;
+    height: 90%;
     margin: 1%;
     border-radius: 10px;
     background-color: #41414110;
-    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .content {
@@ -109,7 +109,7 @@ main {
 
 .conteudo {
     width: 100%; 
-    height: 100%;
+    height: 90%;
     display: flex; 
     flex-direction: row;
     justify-content: center; 
@@ -202,46 +202,48 @@ button.danger:hover {
                 </div>
             </div>
         </aside>
-    <main>
-        <header style="width: 100%; height: auto; display: flex; justify-content: center;
-        border-bottom: 3px solid #111111">
-            <div class="button" style="width: 25%;display: flex;
-        align-items: center;
-        flex-direction: column;">
-                <button class="primary" onclick="changeRouter('../main.php')">
-                    <h6>Back</h6>
-                </button>
-            </div>
-            <h3 style="width: 75%; display: flex;
-        align-items: center;
-        flex-direction: column;">List Accounts</h3>
-        </header>
-        <table style="background-color: #41414120;">
-            <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>Funções</th>
-            </tr>
+        <main>
+            <header style="width: 100%; height: auto; display: flex; justify-content: center;
+            border-bottom: 3px solid #111111">
+                <div class="button" style="width: 25%;display: flex;
+            align-items: center;
+            flex-direction: column;">
+                    <button class="primary" onclick="changeRouter('../main.php')">
+                        <h6>Back</h6>
+                    </button>
+                </div>
+                <h3 style="width: 75%; display: flex;
+            align-items: center;
+            flex-direction: column;">List Accounts</h3>
+            </header>
+            <table style="background-color: #41414120;">
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Funções</th>
+                </tr>
+                <tbody>
+                <?php $i=0;
+                    foreach ($accounts as $account) { 
+                        $i++;
+                        if($i%2 != 0) echo "<tr class='row'>";
+                        else echo "<tr class='rowSec'>";
+                    ?>
+                        <td><?php echo $account->getId(); ?></td>
+                        <td><?php echo $account->getUsername(); ?></td>
+                        <td><?php echo $account->getEmail(); ?></td>
+                        <td><?php echo $account->getPassword(); ?></td>
+                        <td><button class="danger"><h6>Banir</h6></button></td>
+                    </tr>
+                    <?php } ?> 
+                </tbody>
+                
 
-            <?php $i=0;
-            foreach ($accounts as $account) { 
-                $i++;
-                if($i%2 != 0) echo "<tr class='row'>";
-                else echo "<tr class='rowSec'>";
-            ?>
-                <td><?php echo $account->getId(); ?></td>
-                <td><?php echo $account->getUsername(); ?></td>
-                <td><?php echo $account->getEmail(); ?></td>
-                <td><?php echo $account->getPassword(); ?></td>
-                <td><button class="danger"><h6>Banir</h6></button></td>
-            </tr>
-            <?php } ?>
-
-        </table>
-    </main>
-</div>
+            </table>
+        </main>
+    </div>
     <script>
         function changeRouter(router) {
             document.location.href = router;

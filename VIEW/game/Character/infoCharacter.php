@@ -211,7 +211,9 @@ button.primary:hover h6 {
             </div>
             <div class="meio" style="width: 60%; height: 100%;
             display: flex; justify-content: center; align-items: center;">
-                <h5><?php echo $character->getName(); ?> - <?php echo $character->getClass(); ?></h5>
+                <h5 style="width: 100%; height: 100%; text-wrap: balance; overflow: hidden; 
+                display: flex; align-items: center; text-align: center;
+                justify-content: center;"><?php echo $character->getName(); ?> - <?php echo $character->getClass(); ?></h5>
             </div>
             <div class="direita" style="width: 20%; height: 100%;
             display: flex; justify-content: center; align-items: center;">
